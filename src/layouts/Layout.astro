@@ -1,5 +1,7 @@
 ---
 import Loader from '../components/Loader.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
 import '@fontsource/ibm-plex-sans';
 ---
 
@@ -14,8 +16,9 @@ import '@fontsource/ibm-plex-sans';
 		<title>Astro Basics</title>
 	</head>
 	<body>
-
 		<Loader />
+		<Header />
+		<Hero />
 		<slot />
 	</body>
 </html>
