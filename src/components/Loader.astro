@@ -1,0 +1,155 @@
+<div class="loader-wrapper">
+    <div class="loader-text">
+        <div class="text-left">
+            <span class="texto">Juan Cuevas</span>
+        </div>
+        <div class="text-right">
+            <span class="texto"> Hernández </span>
+        </div>
+    </div>
+
+    <div class="loader-im">
+        <img src="https://www.villalon.engineering/vex-demo/wp-content/uploads/sites/6/2026/10/glitched-robot-face-portrait.webp" alt="">
+    </div>
+
+    <div class="loader-contador">
+        <div class="content-progreso"> 
+            <span class="proreso">0</span> 
+            % 
+        </div>
+    </div>
+</div>
+
+<style>
+    .loader-wrapper {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+		background: #04040e;
+	}
+
+    .loader-text {
+        width: 100%;
+        height: 45vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+	}
+
+    .text-left {
+        width: 95%;
+        display: flex;
+        align-items: center;
+        transform: translateX(-100%);
+        justify-items: start;
+
+        transition: transform 0.8s ease;
+    }
+
+    .text-left.reveal { 
+        transform: translateX(0);
+    } 
+
+    .text-left span {
+        color: transparent;
+        -webkit-text-stroke: 1px white;
+    }
+
+    .text-right  {
+        width: 95%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        transform: translateX(100%);
+        transition: transform 0.8s ease;
+    }
+
+    .text-right.reveal  { 
+        transform: translateX(0);
+    } 
+
+    .text-right span {
+        color: #fff;
+    }
+
+    .loader-text span {
+        font-size: 115px;
+        text-transform: uppercase;
+        font-weight: 600;
+	}
+
+    .loader-im {
+        width: 90%;
+        height: 30vh;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+    }
+
+    .loader-im img {
+        width: 150px;
+        height: 100%;
+    }
+
+    .loader-contador {
+        width: 95%;
+        height: 20vh;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+
+    .content-progreso {
+        font-size: 140px;
+        font-weight: 600;
+     
+        color: transparent;
+        -webkit-text-stroke: 1px white;
+    }
+</style>
+
+<script>
+    window.addEventListener('load', () => {
+
+        setTimeout(() => {
+            const numberEle = document.querySelector('.proreso');
+            const duration: number = 2000;
+            const timeInit = performance.now();
+
+            const initLoaderTime = ( timeHow: any ) => {
+                const progress = Math.min( ((timeHow - timeInit ) / duration), 1);
+                let cont = Math.floor( progress * 100 );
+
+                if ( numberEle ) numberEle.textContent = cont.toString();
+
+                if ( progress < 1 ) {
+                    requestAnimationFrame(initLoaderTime);
+                }
+            }
+
+            requestAnimationFrame(initLoaderTime);
+        }, 1000);
+        
+        const initContentReveal = () => { 
+            const textLeft = document.querySelector('.text-left');
+            const textRight = document.querySelector('.text-right');
+
+            if ( textLeft ) { 
+                textLeft.classList.add('reveal');
+            } 
+
+            if ( textRight ) { 
+                textRight.classList.add('reveal');
+            } 
+        }
+        
+        initContentReveal();
+
+    });
+</script>
