@@ -162,11 +162,17 @@
         color: transparent;
         -webkit-text-stroke: 1px white;
     }
+
+    /* Esta clase congelará la pantalla por completo */
+    .no-scroll {
+    overflow: hidden !important;
+    }
+
 </style>
 
 <script>
 
-window.addEventListener('load', () => {
+window.addEventListener('load', () => {    
     const initContentReveal = () => { 
         const textLeft = document.querySelector('.text-left');
         const textRight = document.querySelector('.text-right');
@@ -220,10 +226,15 @@ window.addEventListener('load', () => {
     }, 800);
 
     setTimeout( () => { 
-       const loader = document.querySelector('.loader-wrapper');
-       if ( !loader ) return; 
+        const loader = document.querySelector('.loader-wrapper');
+        if ( !loader ) return; 
 
-       loader.classList.add('hidden');
+        loader.classList.add('hidden');
+
+        const body = document.querySelector('body');
+        if ( ! body ) return;
+
+        body.classList.remove('no-scroll');
 
 
     }, 2100 )

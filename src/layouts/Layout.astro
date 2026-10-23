@@ -15,7 +15,7 @@ import '@fontsource/ibm-plex-sans';
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
 	</head>
-	<body>
+	<body class="no-scroll">
 		<Loader />
 		<Header />
 		<Hero />
@@ -31,4 +31,10 @@ import '@fontsource/ibm-plex-sans';
 		height: 100%;
 		font-family: "IBM Plex Sans", ui-sans-serif;
 	}
+
+	/* Esta clase congelará la pantalla por completo */
+	.no-scroll {
+	overflow: hidden !important;
+	}
+
 </style>
