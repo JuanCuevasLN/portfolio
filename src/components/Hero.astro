@@ -1,73 +1,325 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import imajose from '../assets/FeaturedImage3-4-compressed.png';
+import fondo from '../assets/fondo-dark.png';
+---
+
 <section class="hero-presentation">
+    <Image src={fondo} alt="Descripción de la imagen" class="ima-fondo"/>
+
     <div class="hero-container">
         <div class="container-info">
             <div class="title-cont">
-                <span class="title-text">
-                    Juan de la Cruz
-                    <span class="text-color">
-                        Cuevas Hernández
-                    </span>
-                </span>
+                <span class="title-text">Hola, soy <span class="text-color">Juan de la Cruz Cuevas</span></span>
+            </div>
+            <div class="content-description">
+                <p class="desc-text">
+                    Desarrollador de Software Full Stack con experiencia en el desarrollo de aplicaciones web, integración de APIs REST 
+                    y creación de soluciones personalizadas. Manejo de Angular, TypeScript, NestJS y Express para el desarrollo de 
+                    funcionalidades frontend y backend.
+                </p>
+            </div>
+            <div class="content-buttons">
+                <div class="buttons-section">
+                    <div class="buttons">
+                        <button class="mybuttons gradient">
+                            Ver Experiencia
+                        </button>
+                    </div>
+
+                    <div class="buttons">
+                        <button class="mybuttons cv">
+                            Descarar CV
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="content-bullets">
+                <div class="content-list">
+                    <div class="bullets bullet-address">
+                        <div class="bullets-icon">
+                            <div class="bullet-circle purple">
+                                <Icon name="fa6-brands:github" class="icono-hero purple" />
+                            </div>
+                        </div>
+                        <div class="bullet-val purple">
+                            <p class="bullets-text">Ciudad de México. Mx</p>
+                        </div>
+                    </div>
+                    <div class="bullets bullet-address">
+                        <div class="bullets-icon">
+                            <div class="bullet-circle red">
+                                <Icon name="fa6-brands:github" class="icono-hero red" />
+                            </div>
+                        </div>
+                        <div class="bullet-val red">
+                            <p class="bullets-text">+52 758 109 2916</p>
+                        </div>
+                    </div>
+                    <div class="bullets bullet-address">
+                        <div class="bullets-icon">
+                            <div class="bullet-circle blue">
+                                <Icon name="fa6-brands:github" class="icono-hero blue" />
+                            </div>
+                        </div>
+                        <div class="bullet-val blue">
+                            <p class="bullets-text">jcuevashernandez275</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="container-image">
-            <img src="https://i.pinimg.com/originals/c3/4e/45/c34e4523ef557fe88acca18d423c0d03.png" alt="">
+            <Image src={imajose} alt="Descripción de la imagen" class="ima-perfil"/>
         </div>
     </div>
 </section>
 
 <style>
+    .ima-fondo {
+        width: 100%;
+         height: 620px;
+         position: absolute;
+         top: 0;
+         object-fit: cover;
+    }
     .hero-presentation { 
         width: 100%;
         height: 620px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #0a0a1d;
+        background: radial-gradient(ellipse at 86% 20%, rgba(255, 122, 61, 0.14), transparent 34%), radial-gradient(ellipse at 50% 42%, rgba(28, 74, 126, 0.48), transparent 38%), radial-gradient(ellipse at 50% 100%, rgba(10, 32, 72, 0.5), transparent 42%), linear-gradient(90deg, #070719 0%, #0b1530 34%, #10294b 50%, #0b1530 66%, #070719 100%);  
+        z-index: 2;    
     } 
 
     .hero-container {
-        width: 95%;
-        height: 420px;
+        width: 88%;
+        height: 540px;
         display: flex;
-        align-items: center;
+        gap: 20px;
+        align-items: end;
+        z-index: 10;
         justify-content: center;
     }
 
     .container-info {
-        width: 47%;
-        height: 420px;
-        background: #0a0a1d;
+        width: 55%;
+        height: 460px;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        flex-direction: column;
+        gap: 10px;
     }
 
     .title-cont {
         width: 100%;
-        height: 100px;
+        height: 120px;
     }
 
     .title-cont span {
-        font-size: 57px;
+        font-size: 60px;
         color: #fff;
-        font-weight: 600;
-        letter-spacing: -0.42px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: -0.72px;
         inline-size: 1;
+         display: inline;
         line-height: 1;
     }
 
+    .title-cont .title-text .text-color {
+         display: inline;
+        background: linear-gradient(to right, #DF2562, #C605E8); /* 1. Define el degradado */
+        -webkit-background-clip: text;                          /* 2. Recorta el fondo al texto */
+        -webkit-text-fill-color: transparent;   
+    }
 
-
-    .container-image {
-        width: 47%;
-        height: 480px;
-        background: #0a0a1d;
+    .content-description {
+        width: 100%;
+        height: 90px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .container-image img {
-        position: relative;
-        width: 85%;
-        height: 460px;
+    .content-description .desc-text {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 400;
     }
+
+    .content-buttons {
+        width: 100%;
+        height: 55px;
+    }
+
+    .buttons-section {
+        width: 85%;
+        height: 55px;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .buttons {
+        flex: 1;
+        height: 50px;
+    }
+
+    .mybuttons {
+        width: 100%;
+        border: none;
+        height: 50px;
+        font-size: 15px;
+        color: #fff;
+        border-radius: 9px;
+        background: rgba(0, 0, 0, 0.247);
+    }
+
+    .mybuttons.gradient {
+        border: 2px solid transparent; /* Grosor del borde */
+        background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.441), rgba(0, 0, 0, 0.498)), /* Fondo oscuro transparente (RGBA) */
+        linear-gradient(to right, #F6372B, #8D05F8); /* Los colores de tu degradado */
+        
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+    }
+
+    .mybuttons.cv {
+        border: 1px solid #fff;
+    }
+
+    .content-bullets {
+        width: 100%;
+        height: 75px;
+    }
+
+    .content-list {
+        width: 100%;
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+         gap: 10px;
+    }
+
+    .bullets {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .bullets-icon {
+        width: 50px;
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bullet-circle {
+        width: 50px;
+        height: 45px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bullet-circle.purple  {
+        border: 1px solid #8D05F8;
+        background: #8D05F84b;
+    }
+
+    .bullet-circle.red  {
+        border: 1px solid #EA346E;
+        background: #ea346e35;
+    }
+    
+    .bullet-circle.blue  {
+        border: 1px solid #2659ED;
+        background: #2659ED35;
+    }
+
+    .icono-hero {
+        width: 24px;
+        height: 24px;
+    }
+
+    .icono-hero.purple {
+        color: #8D05F8;
+    }
+    
+    .icono-hero.red {
+        color: #EA346E;
+    }
+
+    .icono-hero.blue {
+        color: #2659ED;
+    }
+
+    .bullet-val {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .bullet-val::after {
+        content: "";
+        width: 50px;
+        height: 4px;
+        border-radius: 999px;
+    }
+
+    .bullet-val.purple::after {
+        background: #8D05F8;
+    }
+
+    .bullet-val.red::after {
+        background: #EA346E;
+    }
+
+    .bullet-val.blue::after {
+        background: #2659ED;
+    }
+
+    .bullets-text {
+        font-size: 15px;
+        font-weight: 400;
+        color: #fff;
+    }
+
+    .container-image {
+        width: 42%;
+        height: 540px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        justify-content: center;
+    }
+
+    .container-image .ima-perfil {
+        position: relative;
+        width: 100%;
+        height: 540px;
+          filter: drop-shadow(0 0 8px #0e2675) drop-shadow(0 0 20px #102d8c);
+    }
+
+    .widget-floating {
+        position: absolute;
+        width: 230px;
+        height: 140px;
+        right: -50px;
+        border-radius: 9px;
+        top: 100px;
+        background: #081623;
+          filter: drop-shadow(0 0 8px #0e2675) drop-shadow(0 0 20px #102d8c);
+    }
+
 </style>
