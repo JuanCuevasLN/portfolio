@@ -2,16 +2,27 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import imajose from '../assets/FeaturedImage3-4-compressed.png';
-import fondo from '../assets/fondo-dark.png';
+import typejs from '../assets/typejs.png';
+import node from '../assets/node.png';
+import angular from '../assets/angular.png';
+import express from '../assets/express.png';
+import docker from '../assets/docker.png';
+import nest from '../assets/nest.png';
+
+import fondo from '../assets/fondo-dark.png'
 ---
 
 <section class="hero-presentation">
-    <Image src={fondo} alt="Descripción de la imagen" class="ima-fondo"/>
-
     <div class="hero-container">
         <div class="container-info">
+            <div class="content-bad">
+                <div class="content-bad-text">
+                    <p> < Programador Full Stack /> </p>
+                </div>
+            </div>
             <div class="title-cont">
-                <span class="title-text">Hola, soy <span class="text-color">Juan de la Cruz Cuevas</span></span>
+                <div class="title-text">Hola, soy</div>
+                <div class="text-color">Juan de la Cruz Cuevas</div>
             </div>
             <div class="content-description">
                 <p class="desc-text">
@@ -72,73 +83,112 @@ import fondo from '../assets/fondo-dark.png';
         </div>
         <div class="container-image">
             <Image src={imajose} alt="Descripción de la imagen" class="ima-perfil"/>
+            <div class="floatin-tec">
+                <div class="float-card">
+                    <div class="card-list">
+                        <Image src={node} alt="Descripción de la imagen" class="ima-tec"/>
+                        <p>NodeJs</p>
+                    </div>
+                    <div class="card-list">
+                        <Image src={angular} alt="Descripción de la imagen" class="ima-tec"/>
+                        <p>Angular</p>
+                    </div>
+                    <div class="card-list">
+                        <Image src={express} alt="Descripción de la imagen" class="ima-tec"/>
+                        <p>ExpressJs</p>
+                    </div>
+                    <div class="card-list">
+                        <Image src={typejs} alt="Descripción de la imagen" class="ima-tec"/>
+                        <p>TypeScript</p>
+                    </div>
+                    <div class="card-list">
+                        <Image src={nest} alt="Descripción de la imagen" class="ima-tec"/>
+                        <p>NestJS</p>
+                    </div>
+                    <div class="card-list">
+                        <Image src={docker} alt="Descripción de la imagen" class="ima-tec"/>
+                        <p>Docker</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <Image src={fondo} alt="Descripción de la imagen" class="fondo-hero"/>
+    <canvas class="mycanvas" id="mycanvashero"></canvas>
 </section>
 
 <style>
-    .ima-fondo {
+    .fondo-hero {
         width: 100%;
-         height: 620px;
-         position: absolute;
-         top: 0;
-         object-fit: cover;
+        height: 670px;
+        object-fit: cover;
+        inset: 0;
+        position: absolute;
     }
+
     .hero-presentation { 
         width: 100%;
-        height: 620px;
+        height: 670px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: radial-gradient(ellipse at 86% 20%, rgba(255, 122, 61, 0.14), transparent 34%), radial-gradient(ellipse at 50% 42%, rgba(28, 74, 126, 0.48), transparent 38%), radial-gradient(ellipse at 50% 100%, rgba(10, 32, 72, 0.5), transparent 42%), linear-gradient(90deg, #070719 0%, #0b1530 34%, #10294b 50%, #0b1530 66%, #070719 100%);  
+        background: #010511 ;
         z-index: 2;    
     } 
 
     .hero-container {
-        width: 88%;
-        height: 540px;
+        width: 85%;
+        height: 670px;
         display: flex;
         gap: 20px;
-        align-items: end;
-        z-index: 10;
+        align-items: center;
+        z-index: 50;
         justify-content: center;
     }
 
     .container-info {
         width: 55%;
-        height: 460px;
+        height: 540px;
         display: flex;
-        align-items: center;
+    
         justify-content: end;
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
     }
 
     .title-cont {
         width: 100%;
         height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
 
-    .title-cont span {
+    .title-cont div {
+        width: 100%;
+        height: 60px;
         font-size: 60px;
         color: #fff;
-        font-weight: 700;
+        font-weight: 900;
+
         text-transform: uppercase;
         letter-spacing: -0.72px;
-        inline-size: 1;
-         display: inline;
+         display: flex;
+         align-items: center;
         line-height: 1;
     }
 
-    .title-cont .title-text .text-color {
-         display: inline;
-        background: linear-gradient(to right, #DF2562, #C605E8); /* 1. Define el degradado */
+    .title-cont .text-color {
+        display: inline;
+        font-weight: 900;
+        background: linear-gradient(to right, #08befd, #C605E8); /* 1. Define el degradado */
         -webkit-background-clip: text;                          /* 2. Recorta el fondo al texto */
         -webkit-text-fill-color: transparent;   
     }
 
     .content-description {
-        width: 100%;
+        width: 70%;
         height: 90px;
         display: flex;
         align-items: center;
@@ -146,9 +196,8 @@ import fondo from '../assets/fondo-dark.png';
     }
 
     .content-description .desc-text {
-        color: #fff;
-        font-size: 16px;
-        font-weight: 400;
+        color: #e5e6f3;
+        font-size: 15px;
     }
 
     .content-buttons {
@@ -177,14 +226,14 @@ import fondo from '../assets/fondo-dark.png';
         font-size: 15px;
         color: #fff;
         border-radius: 9px;
-        background: rgba(0, 0, 0, 0.247);
+        background: rgba(0, 0, 0, 0.542);
     }
 
     .mybuttons.gradient {
         border: 2px solid transparent; /* Grosor del borde */
         background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.441), rgba(0, 0, 0, 0.498)), /* Fondo oscuro transparente (RGBA) */
-        linear-gradient(to right, #F6372B, #8D05F8); /* Los colores de tu degradado */
+        linear-gradient(rgba(255, 255, 255, 0.13), rgba(0, 0, 0, 0.163)), /* Fondo oscuro transparente (RGBA) */
+        linear-gradient(to right, rgb(8, 190, 253), rgb(141, 5, 248)); /* Los colores de tu degradado */
         
         background-origin: border-box;
         background-clip: padding-box, border-box;
@@ -296,10 +345,10 @@ import fondo from '../assets/fondo-dark.png';
     }
 
     .container-image {
-        width: 42%;
-        height: 540px;
+        width: 44%;
+        height: 640px;
         display: flex;
-        align-items: center;
+        align-items: end;
         position: relative;
         justify-content: center;
     }
@@ -308,18 +357,189 @@ import fondo from '../assets/fondo-dark.png';
         position: relative;
         width: 100%;
         height: 540px;
-          filter: drop-shadow(0 0 8px #0e2675) drop-shadow(0 0 20px #102d8c);
+        filter: drop-shadow(0 0 8px #0e2675) drop-shadow(0 0 20px #102d8c);
     }
 
-    .widget-floating {
-        position: absolute;
-        width: 230px;
-        height: 140px;
-        right: -50px;
+       .content-bad { 
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: end;
+    } 
+    
+    .content-bad-text { 
+        width: fit-content;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 9px;
-        top: 100px;
-        background: #081623;
-          filter: drop-shadow(0 0 8px #0e2675) drop-shadow(0 0 20px #102d8c);
+        padding: 0 15px;
+        background: linear-gradient(to right, #C605E8, #08befd);
+    } 
+
+    .content-bad-text p  { 
+        color: #f6f7ff;
+        font-weight: 700;
+        font-size: 15px;
+    } 
+
+    .floatin-tec { 
+        width: 190px;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to right, #010613, #020e2c) ;
+        z-index: 2;  
+        position: absolute;
+        top: 120px; 
+        right: -50px; 
+
+        clip-path: polygon(
+            20px 0,                        /* arriba, después del corte izq. */
+            100% 0,                                /* arriba derecha */
+            100% calc(100% - 20px),        /* derecha, antes del corte inferior */
+            calc(100% - 20px) 100%,        /* abajo, antes del corte der. */
+            0 100%,                                /* abajo izquierda */
+            0 20px              /* izquierda, debajo del corte */
+        );
+        border-radius: 6px;
+        border: 1px solid #efd4f460;
+    } 
+
+    .float-card  { 
+        width: 150px;
+        height: 210px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column; 
+        gap: 2px;
+    } 
+
+    .card-list { 
+        width: 100%;
+        height: 35px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-direction: row; 
+    
+    } 
+
+    .ima-tec { 
+        width: 25px;
+        height: 25px;
+        object-fit: cover;
+        border-radius: 999px;
+    } 
+
+    .card-list p { 
+        color: #afb4e1;
+        font-size: 14px;
+    } 
+
+    .mycanvas {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        z-index: 10;
     }
 
 </style>
+
+<script>
+    import type { myLineas } from '../types/lineas';
+
+    document.addEventListener( 'DOMContentLoaded', () => { 
+        const canvas = document.querySelector<HTMLCanvasElement>('#mycanvashero');
+            
+        if ( ! canvas ) return;
+
+        const ctx = canvas.getContext('2d');
+        if ( !ctx ) return;
+
+        const updatePantalla = () => { 
+            canvas.width = window.innerWidth;
+            canvas.height = 670; 
+        }
+        updatePantalla()
+        window.addEventListener('resize', updatePantalla);
+
+        const cannt = 12;
+        const arrLineas:  myLineas[] = [];
+
+        class Lluvia { 
+            x: number;
+            y: number;
+            l: number;
+            v: number;
+            opa: number;
+
+            constructor( canvas: HTMLCanvasElement) {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height; 
+                this.v = 2 + Math.random() * 12; 
+                this.l = 40 + Math.random() * 60; 
+                this.opa = 0.3 + Math.random() * 0.5; 
+            }
+            
+            drawLineas(): void {
+                if ( !ctx ) return; 
+                const gradiente = ctx.createLinearGradient(this.x, this.y, this.x, this.y + this.l);
+                gradiente.addColorStop(0, 'rgba(174, 219, 255, 0)'); // Desaparece arriba
+                gradiente.addColorStop(1, `rgba(174, 219, 255, ${this.opa})`); // Punta brillante abajo
+
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x, this.y + this.l);
+                
+                ctx.strokeStyle = gradiente;
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+            }
+
+            updateLineas(): void {
+                this.y += this.v;
+                
+                if ( ! canvas ) return;
+
+                if (this.y - this.l > canvas.height) {
+                    this.reset();
+                }
+            }
+
+            reset(): void {
+                if ( ! canvas ) return;
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * -canvas.height; 
+                this.v = 2 + Math.random() * 2; 
+                this.l = 40 + Math.random() * 60; 
+                this.opa = 0.3 + Math.random() * 0.5; 
+            }
+        }
+
+        const create = () => { 
+            for( let i = 0; i < cannt; i++ ) { 
+                arrLineas.push( new Lluvia(canvas) );
+            }
+        } 
+
+        create();
+
+        const animar = () => { 
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            arrLineas.forEach( (linea) => {
+                linea.updateLineas();
+                linea.drawLineas();
+            });
+
+            requestAnimationFrame(animar);
+        }
+        animar();
+    })
+</script>
