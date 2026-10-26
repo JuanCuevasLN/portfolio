@@ -1,0 +1,185 @@
+---
+import { Image } from "astro:assets";
+
+import Gastro from '../assets/glitched-robot-face-portrait.webp';
+import mandadito from '../assets/glitched-robot-face-portrait.webp';
+import seguridad from '../assets/glitched-robot-face-portrait.webp';
+---
+
+<section class="section-experience">
+    <div class="section-title-sticky-height">
+        <div class="section-title-and-img-sticky">
+            <h2 class="title-sticky">Proyectos destacados</h2>
+            <div class="sectio-ima-sticky">
+                <Image src={Gastro} alt="Descripción de la imagen" class='proyect-img one' />
+                <Image src={mandadito} alt="Descripción de la imagen" class='proyect-img two' />
+                <Image src={seguridad} alt="Descripción de la imagen" class='proyect-img three' />
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .section-experience  {
+        width: 100%;
+        height: auto;
+        background: #000107;
+    }
+
+    .section-title-sticky-height {
+        --height-content: auto;
+        width: 100%;
+        
+        height: var(--height-content);
+        display: flex;
+        align-items: start;
+        justify-content: center;
+    }
+
+    .section-title-and-img-sticky {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: sticky;
+        top: 0;
+    }
+
+    .title-sticky {
+        --translateY: 0;
+        --opacidad: 1;
+
+        transform: translateY( var(--translateY) );
+        opacity: var(--opacidad);
+        font-size: 72px;
+        font-weight: 700;
+        color: #dce6ee;
+        letter-spacing: -2.5;
+        line-height: 1;
+        z-index: 10;
+    }
+
+    .sectio-ima-sticky {
+        width: 90%;
+        height: 90%;
+        position: absolute;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .proyect-img  {
+        --scaleVal: 1;
+        transform: scale( var(--scaleVal));
+        position: absolute;
+    }
+
+    .proyect-img.one {
+        width: 180px;
+        height: 180px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        top: 10%;
+    }
+
+    .proyect-img.two {
+        width: 210px;
+        height: 180px;
+        top: 30%;
+        left: 5%;
+    }
+
+    .proyect-img.three {
+        width: 210px;
+        height: 180px;
+        top: 30%;
+        right: 5%;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sectionSticky = document.querySelector('.section-title-sticky-height') as HTMLElement | null;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const supportIntersectionObserver = 'IntersectionObserver' in window;
+        if ( ! sectionSticky ) return;
+        
+        let ticking = false;
+        let start = 0 //inicia cuando el top del contenedor esté alejado un 60% del top del viewport
+        let end = 0 // termina cunado el bottom del contenedor esté justo en el botton del viewport
+        let progressTarget = 0; //Objectio del progreso
+        let latencia = 0.004;
+
+        const clamp = (val: number, min: number, max: number) => {
+            return Math.max( min, Math.min(val, max));
+        }
+
+        const updateAnimation = () => {
+            const rect = sectionSticky.getBoundingClientRect();
+            if ( ! rect ) return;
+
+            const rawProgress = ( start - rect.top) / (start - end);
+            const progress = clamp(rawProgress, 0, 1);
+            console.log(progress);
+
+            ticking = false;
+        }
+
+        const requestUpdate = () => {
+            if ( ticking ) return;
+           
+            ticking = true;
+
+            requestAnimationFrame(updateAnimation);
+        }
+
+        const observer = supportIntersectionObserver ? 
+            new IntersectionObserver( (entries) => {
+                entries.forEach( (entry) => {
+                    if ( entry.isIntersecting ) {
+                        window.addEventListener( 'scroll', requestUpdate, { passive: true} );
+                    } else {
+                        window.removeEventListener( 'scroll', requestUpdate );
+                    }
+                });
+            })
+        : null;
+
+        const animation = () => {
+            if ( !observer ) return;
+            observer.observe(sectionSticky);
+        }
+
+        const initSectionAnimation = () => {
+            // Corrección de tipos para querySelector y querySelectorAll
+            const titleSticky = document.querySelector('.title-sticky') as HTMLElement | null;
+            const sectioImaSticky = document.querySelectorAll('.proyect-img');
+            const sectionSticky = document.querySelector('.section-title-sticky-height') as HTMLElement | null;
+
+            if ( !sectionSticky || !titleSticky || sectioImaSticky.length === 0 ) return;
+
+            sectionSticky.style.setProperty( "--height-content",  '1200px' );
+            titleSticky.style.setProperty( '--translateY', '100px' );
+            titleSticky.style.setProperty( '--opacidad', '0' );
+
+            sectioImaSticky.forEach(ima => {
+                // Forzamos el tipo aquí dentro del bucle de forma segura
+                (ima as HTMLElement).style.setProperty( '--scaleVal', '0');
+            });
+            
+            const rect = sectionSticky.getBoundingClientRect();
+            const vh = window.innerHeight;
+
+            start = vh * 0.6;
+            end = vh - rect.height;
+        }
+
+        if ( !reduceMotion ) {
+            initSectionAnimation();
+            animation();
+        }
+    });
+</script>

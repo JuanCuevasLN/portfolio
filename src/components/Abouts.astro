@@ -6,11 +6,12 @@ import imageReveal from '../assets/android-woman-headphones-profile.webp'
 
 <section class="section-abouts">
     <div class="section-info">
-        <Image src={imageReveal} alt="Descripción de la imagen" class='ima-reveal' />
         <div class="section-title">
             <div class="section-title-fondo-blur">
                 <h2 class="subtitle">Experiencia Profecional</h2>
             </div>
+
+            <Image src={imageReveal} alt="Descripción de la imagen" class='ima-reveal' />
         </div>
         <div class="section-cards">
             <section class="experience-card">
@@ -144,7 +145,7 @@ import imageReveal from '../assets/android-woman-headphones-profile.webp'
         width: 380px;
         height: 430px;
         position: absolute;
-        left: 0;
+        left: -35%;
         top: 40%;
         transform: translateX(-300px);
         opacity: 0;
@@ -161,6 +162,7 @@ import imageReveal from '../assets/android-woman-headphones-profile.webp'
         font-weight: 700;
         color: #dce6ee;
         letter-spacing: -2.5;
+        line-height: 1;
     }
 
     .section-cards {
@@ -358,7 +360,7 @@ import imageReveal from '../assets/android-woman-headphones-profile.webp'
                 entries.forEach( ( entry) => {
                     if ( entry.isIntersecting ) {
                         const card = entry.target as HTMLElement;
-
+                    
                         card.classList.add('reveal');
 
                         obs.unobserve( imaReveal );
@@ -369,5 +371,7 @@ import imageReveal from '../assets/android-woman-headphones-profile.webp'
 
         if ( ! observer ) return;
         observer.observe(imaReveal)
+
+
     });
 </script>
