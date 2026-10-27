@@ -17,6 +17,9 @@ import seguridad from '../assets/glitched-robot-face-portrait.webp';
             </div>
         </div>
     </div>
+    <div class="section-information-project">
+
+    </div>
 </section>
 
 <style>
@@ -33,6 +36,7 @@ import seguridad from '../assets/glitched-robot-face-portrait.webp';
         height: var(--height-content);
         display: flex;
         align-items: start;
+
         justify-content: center;
     }
 
@@ -44,6 +48,8 @@ import seguridad from '../assets/glitched-robot-face-portrait.webp';
         justify-content: center;
         position: sticky;
         top: 0;
+
+        background: linear-gradient(115deg, transparent 0 18%, rgb(#000107) 18.1% 18.45%, transparent 18.7% 100%), linear-gradient(145deg, rgba(122, 92, 255, 0.2), transparent 34%), linear-gradient(315deg, rgba(255, 23, 79, 0.14), transparent 36%), linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 36%), #080912;
     }
 
     .title-sticky {
@@ -88,52 +94,120 @@ import seguridad from '../assets/glitched-robot-face-portrait.webp';
     .proyect-img.two {
         width: 210px;
         height: 180px;
-        top: 30%;
-        left: 5%;
+        top: 25%;
+        left: 0%;
     }
 
     .proyect-img.three {
         width: 210px;
         height: 180px;
-        top: 30%;
-        right: 5%;
+        top: 40%;
+        right: 2%;
+    }
+
+    .section-information-project {
+        width: 100%;
+        height: 550px;
+        background: #fff;
     }
 </style>
 
 <script>
+import type { boolean, hash } from "astro:schema";
+
+
     document.addEventListener('DOMContentLoaded', () => {
         const sectionSticky = document.querySelector('.section-title-sticky-height') as HTMLElement | null;
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const titleSticky = document.querySelector('.title-sticky') as HTMLElement | null;
         const supportIntersectionObserver = 'IntersectionObserver' in window;
+
         if ( ! sectionSticky ) return;
         
-        let ticking = false;
-        let start = 0 //inicia cuando el top del contenedor esté alejado un 60% del top del viewport
-        let end = 0 // termina cunado el bottom del contenedor esté justo en el botton del viewport
-        let progressTarget = 0; //Objectio del progreso
-        let latencia = 0.004;
+        let ticking: boolean = false;
+        let start: number = 0;
+        let end: number = 0;
+
+        let secondStart = 0;
+        let secondEnd = 0;
+
+        const SMOOTH: number = 0.12;
+        const SMOOTH_EPSILON: number = 0.001;
+        let actual: null | number = null;
+        let secondHow: null | number = null;
 
         const clamp = (val: number, min: number, max: number) => {
             return Math.max( min, Math.min(val, max));
         }
 
-        const updateAnimation = () => {
+        const updateAnimation = (): boolean => {
             const rect = sectionSticky.getBoundingClientRect();
-            if ( ! rect ) return;
+            if ( ! rect ) return false;
 
             const rawProgress = ( start - rect.top) / (start - end);
             const progress = clamp(rawProgress, 0, 1);
-            console.log(progress);
 
-            ticking = false;
+            if ( actual === null ) {
+                actual = progress;
+            } else {
+                actual += ( progress - actual ) * SMOOTH;
+            }
+
+            if ( Math.abs( progress - actual) < SMOOTH_EPSILON ) {
+                actual = progress
+            }
+
+            const rawProgressSecond = ( secondStart - rect.top ) / ( secondStart - secondEnd );
+            const progressSecond = clamp( rawProgressSecond, 0, 1);
+
+            if ( secondHow === null ) {
+                secondHow = progressSecond;
+            } else {
+                secondHow += ( progressSecond - secondHow ) * SMOOTH;
+            }
+
+            if ( Math.abs( progressSecond - secondHow) < SMOOTH_EPSILON ) {
+                secondHow = progressSecond
+            }
+            
+            if ( actual === null || secondHow === null ) return false;
+           
+            // Animaciones de imaen
+            const sectioImaSticky = document.querySelectorAll('.proyect-img');
+            sectioImaSticky.forEach(element => {
+                if ( actual ) {
+                    (element as HTMLElement).style.setProperty( '--scaleVal', actual.toString() );
+                }
+            });
+
+            //Animaciones texto
+            if ( ! titleSticky ) return false;
+            titleSticky.style.setProperty( '--opacidad', actual.toString() );
+
+            const translateY = 200 + (0 - 200) * actual;     
+
+            titleSticky.style.setProperty( '--translateY', translateY.toString() );
+
+
+            //Animacion desaparecen Imagenes
+            console.log(progress, actual, '----', progressSecond, secondHow );
+            
+            return actual !== progress || secondHow !== progressSecond ;
         }
+
+        const tick = () => {
+            if (updateAnimation()) {
+                requestAnimationFrame(tick)
+            } else {
+                ticking = false;
+            }
+        } 
 
         const requestUpdate = () => {
             if ( ticking ) return;
            
             ticking = true;
-
-            requestAnimationFrame(updateAnimation);
+            requestAnimationFrame( tick ) 
         }
 
         const observer = supportIntersectionObserver ? 
@@ -154,19 +228,15 @@ import seguridad from '../assets/glitched-robot-face-portrait.webp';
         }
 
         const initSectionAnimation = () => {
-            // Corrección de tipos para querySelector y querySelectorAll
-            const titleSticky = document.querySelector('.title-sticky') as HTMLElement | null;
             const sectioImaSticky = document.querySelectorAll('.proyect-img');
-            const sectionSticky = document.querySelector('.section-title-sticky-height') as HTMLElement | null;
 
             if ( !sectionSticky || !titleSticky || sectioImaSticky.length === 0 ) return;
 
             sectionSticky.style.setProperty( "--height-content",  '1200px' );
-            titleSticky.style.setProperty( '--translateY', '100px' );
+            titleSticky.style.setProperty( '--translateY', '200px' );
             titleSticky.style.setProperty( '--opacidad', '0' );
 
             sectioImaSticky.forEach(ima => {
-                // Forzamos el tipo aquí dentro del bucle de forma segura
                 (ima as HTMLElement).style.setProperty( '--scaleVal', '0');
             });
             
@@ -174,7 +244,10 @@ import seguridad from '../assets/glitched-robot-face-portrait.webp';
             const vh = window.innerHeight;
 
             start = vh * 0.6;
-            end = vh - rect.height;
+            end = 0;
+
+            secondStart = -100;
+            secondEnd = vh - rect.height;
         }
 
         if ( !reduceMotion ) {

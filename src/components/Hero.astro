@@ -9,7 +9,6 @@ import express from '../assets/express.png';
 import docker from '../assets/docker.png';
 import nest from '../assets/nest.png';
 
-import fondo from '../assets/fondo-dark.png'
 ---
 
 <section class="hero-presentation">
@@ -111,7 +110,6 @@ import fondo from '../assets/fondo-dark.png'
             </div>
         </div>
     </div>
-    <Image src={fondo} alt="Descripción de la imagen" class="fondo-hero"/>
     <canvas class="mycanvas" id="mycanvashero"></canvas>
 </section>
 
@@ -122,6 +120,7 @@ import fondo from '../assets/fondo-dark.png'
         object-fit: cover;
         inset: 0;
         position: absolute;
+        background: #000107;
     }
 
     .hero-presentation { 
@@ -130,7 +129,7 @@ import fondo from '../assets/fondo-dark.png'
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #010511 ;
+        background: #000107;
         z-index: 2;    
     } 
 
