@@ -2,8 +2,8 @@
 import { Image } from "astro:assets";
 
 import Gastro from '../assets/glitched-robot-face-portrait.webp';
-import mandadito from '../assets/glitched-robot-face-portrait.webp';
-import seguridad from '../assets/glitched-robot-face-portrait.webp';
+import villalon from '../assets/villalon.png';
+import finanza from '../assets/finanzas.png';
 ---
 
 <section class="section-experience">
@@ -12,8 +12,8 @@ import seguridad from '../assets/glitched-robot-face-portrait.webp';
             <h2 class="title-sticky">Proyectos destacados</h2>
             <div class="sectio-ima-sticky">
                 <Image src={Gastro} alt="Descripción de la imagen" class='proyect-img one' />
-                <Image src={mandadito} alt="Descripción de la imagen" class='proyect-img two' />
-                <Image src={seguridad} alt="Descripción de la imagen" class='proyect-img three' />
+                <Image src={villalon} alt="Descripción de la imagen" class='proyect-img two' />
+                <Image src={finanza} alt="Descripción de la imagen" class='proyect-img three' />
             </div>
         </div>
     </div>
@@ -27,6 +27,8 @@ import seguridad from '../assets/glitched-robot-face-portrait.webp';
         width: 100%;
         height: auto;
         background: #000107;
+        position: relative;
+        z-index: 2000;
     }
 
     .section-title-sticky-height {
@@ -58,12 +60,15 @@ import seguridad from '../assets/glitched-robot-face-portrait.webp';
 
         transform: translateY( var(--translateY) );
         opacity: var(--opacidad);
-        font-size: 72px;
+
+        color: #dce6ee;
+        z-index: 10;
+
+        font-size: 50px;
         font-weight: 700;
         color: #dce6ee;
         letter-spacing: -2.5;
         line-height: 1;
-        z-index: 10;
     }
 
     .sectio-ima-sticky {
@@ -80,6 +85,8 @@ import seguridad from '../assets/glitched-robot-face-portrait.webp';
         --scaleVal: 1;
         transform: scale( var(--scaleVal));
         position: absolute;
+        object-fit: cover;
+        border-radius: 9px;
     }
 
     .proyect-img.one {
@@ -92,15 +99,15 @@ import seguridad from '../assets/glitched-robot-face-portrait.webp';
     }
 
     .proyect-img.two {
-        width: 210px;
-        height: 180px;
+        width: 230px;
+        height: 270px;
         top: 25%;
         left: 0%;
     }
 
     .proyect-img.three {
-        width: 210px;
-        height: 180px;
+        width: 230px;
+        height: 250px;
         top: 40%;
         right: 2%;
     }

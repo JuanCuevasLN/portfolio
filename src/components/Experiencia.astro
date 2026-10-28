@@ -1,0 +1,218 @@
+---
+import { Image } from "astro:assets";
+import imageReveal from "../assets/female-android-visor-bust.webp";
+import ExperienciaCard from "../components/ExperienciaCard.astro";
+---
+
+<section class="section-abouts">
+    <div class="section-info">
+        <div class="section-title">
+            <div class="section-title-fondo-blur">
+                <h2 class="subtitle">Experiencia Profecional</h2>
+            </div>
+
+            <Image
+                src={imageReveal}
+                alt="Descripción de la imagen"
+                class="ima-reveal"
+            />
+        </div>
+        <div class="section-cards">
+            <ExperienciaCard
+                numero="02"
+                etiqueta="Programador"
+                titulo="Desarrollador Full Stack"
+                periodo="Ene 2025 — Septiembre 2026"
+                empresa="Villalon Engieneering"
+                ubicacion="Morelia, México"
+                imagen="/img/villalon.png"
+                tecnologias={[
+                    { icono: "logos:angular-icon", nombre: "Angular" },
+                    { icono: "logos:nestjs", nombre: "NestJS" },
+                    { icono: "simple-icons:express", nombre: "Express" },
+                    { icono: "logos:typescript-icon", nombre: "TypeScript" },
+                    { icono: "logos:docker-icon", nombre: "Docker" },
+                    { icono: "logos:wordpress-icon", nombre: "WordPress" },
+                    { icono: "logos:php", nombre: "PHP" },
+                ]}
+                logros={[
+                    {
+                        icono: "lucide:code-xml",
+                        titulo: "Desarrollo de aplicaciones con Angular",
+                        descripcion: "Desarrollo múltiples módulos utilizando Angular, implementado operaciones CRUD, servicios y modelos de datos para gestionar entidades e integrar funcionalidades mediante APIs REST",
+                    },
+                    {
+                        icono: "lucide:globe",
+                        titulo: "Desarrollo e integración de backend",
+                        descripcion:
+                            "Desarrollo e integración de backend: Trabajé con APIs REST desarrolladas con NestJS y Express, participando tanto en su consumo desde el frontend como en el desarrollo de las mismas.",
+                    },
+                    {
+                        icono: "lucide:laptop",
+                        titulo: "Desarrollo de themes avanzados para wordpress",
+                        descripcion:
+                            "Colaboré en la creación de un theme personalizado compatible con múltiples plugins, integrando herramientas como Elementor y Yoast SEO, además de soluciones de traducción y autenticación en dos pasos",
+                    },
+                    {
+                        icono: "lucide:network",
+                        titulo: "Desarrollo de plugins personalizados",
+                        descripcion:
+                            "Creé un plugin para la empresa para extender funcionalidades y modificar el comportamiento de herramientas como Elementor y Eventin, adaptándolas a los requerimientos específicos de los proyectos.",
+                    },   
+                    {
+                        icono: "lucide:network",
+                        titulo: "Desarrollo del sitio web corporativo",
+                        descripcion:
+                            "Desarrollé el sitio web actual de la empresa, mejorando su interactividad mediante animaciones y funcionalidades dinámicas, e integrando el theme y plugins personalizados creados previamente",
+                    },
+                ]}
+            />
+            <ExperienciaCard
+                numero="01"
+                etiqueta="Soporte técnico"
+                titulo="Soporte técnico y desarrollo de software"
+                periodo="Abril 2023 — Agosto 2023"
+                empresa="Secretaría de Finanzas"
+                ubicacion="Guerrero, México"
+                imagen="/img/finanzas.png"
+                tecnologias={[
+                    { icono: "logos:javascript", nombre: "JavaScript" },
+                    { icono: "logos:php", nombre: "PHP" },
+                    { icono: "logos:html-5", nombre: "HTML" },
+                    { icono: "logos:css-3", nombre: "CSS" },
+                    { icono: 'simple-icons:cisco', nombre: 'Cisco' },
+                ]}
+                logros={[
+                    {
+                        icono: "lucide:code-xml",
+                        titulo: "Desarrollo de sistemas",
+                        descripcion:
+                            "Desarrollé un sistema de gestión de tickets utilizando JavaScript, PHP, HTML y CSS para optimizar la atención de solicitudes internas y agilizar los procesos operativos de las oficinas.",
+                    },
+                    {
+                        icono: "lucide:globe",
+                        titulo: "Desarrollo web",
+                        descripcion:
+                            "Diseñé y desarrollé una página web para el área de Astronomía, utilizando tecnologías web para estructurar y presentar la información de manera clara y accesible.",
+                    },
+                    {
+                        icono: "lucide:laptop",
+                        titulo: "Mantenimiento y soporte técnico",
+                        descripcion:
+                            "Realicé mantenimiento preventivo y correctivo a equipos de cómputo, así como el diagnóstico y la resolución de incidencias técnicas.",
+                    },
+                    {
+                        icono: "lucide:network",
+                        titulo: "Soporte de infraestructura de red",
+                        descripcion:
+                            "Brindé mantenimiento y soporte a la conectividad de las oficinas, trabajando con infraestructura y equipos de red Cisco.",
+                    },
+                ]}
+            />
+        </div>
+    </div>
+</section>
+
+<style>
+    .img-fondo-section {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        z-index: 1;
+    }
+
+    .section-abouts {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        object-fit: cover;
+        background: #000107;
+
+        position: relative;
+        z-index: 1000;
+        padding: 6rem 0;
+    }
+
+    .section-info {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .section-title {
+        width: 25%;
+        height: 720px;
+        position: sticky;
+        top: 0;
+        display: flex;
+    }
+
+    .ima-reveal {
+        width: 700px;
+        height: 720px;
+        position: absolute;
+        left: -50px;
+        overflow: hidden;
+        bottom: -200px;
+        transform: translateX(-200px);
+        /* opacity: 0; */
+        transition:
+            transform 0.6s ease-out,
+            opacity 0.6s ease-out;
+    }
+    /* 
+    .ima-reveal.reveal {
+        opacity: 1;
+        transform: translateX(0);
+    } */
+
+    .subtitle {
+        font-size: 50px;
+        font-weight: 700;
+        color: #dce6ee;
+        letter-spacing: -2.5;
+        line-height: 1;
+    }
+
+    .section-cards {
+        width: 60%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 45px;
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const imaReveal = document.querySelector(".ima-reveal");
+        if (!imaReveal) return;
+
+        const supportObserver = "IntersectionObserver" in window;
+
+        const observer = supportObserver
+            ? new IntersectionObserver(
+                  (entries, obs) => {
+                      entries.forEach((entry) => {
+                          if (entry.isIntersecting) {
+                              const card = entry.target as HTMLElement;
+
+                              card.classList.add("reveal");
+
+                              obs.unobserve(imaReveal);
+                          }
+                      });
+                  },
+                  { threshold: 0.1 },
+              )
+            : null;
+
+        if (!observer) return;
+        observer.observe(imaReveal);
+    });
+</script>

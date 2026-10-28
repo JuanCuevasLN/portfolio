@@ -1,0 +1,459 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Logro {
+  icono: string;
+  titulo: string;
+  descripcion: string;
+}
+
+interface Tecnologia {
+  icono: string;
+  nombre: string;
+}
+
+interface Props {
+  numero?: string;
+  etiqueta: string;
+  titulo: string;
+  periodo: string;
+  empresa: string;
+  ubicacion?: string;
+  iconoEmpresa?: string;
+  imagen: string;
+  logros: Logro[];
+  tecnologias?: Tecnologia[];
+  enlace?: string;
+}
+
+const {
+  numero = '01',
+  etiqueta,
+  titulo,
+  periodo,
+  empresa,
+  ubicacion,
+  iconoEmpresa = 'lucide:building-2',
+  imagen,
+  logros,
+  tecnologias = [],
+  enlace,
+} = Astro.props;
+---
+
+<article class="exp">
+  <!-- ============ PANEL IZQUIERDO ============ -->
+  <aside class="exp__side">
+    <img class="exp__bg" src={imagen} alt={`Sede de ${empresa}`} loading="lazy" />
+    <div class="exp__shade"></div>
+
+    <header class="exp__company">
+      <div class="exp__logo">
+        <Icon name={iconoEmpresa} />
+      </div>
+      <div>
+        <h4 class="exp__company-name">{empresa}</h4>
+        {
+          ubicacion && (
+            <p class="exp__location">
+              <Icon name="lucide:map-pin" />
+              {ubicacion}
+            </p>
+          )
+        }
+      </div>
+    </header>
+
+    {
+      tecnologias.length > 0 && (
+        <div class="exp__tech">
+          <p class="exp__tech-title">Tecnologías utilizadas</p>
+          <ul class="exp__tech-list">
+            {tecnologias.map((t) => (
+              <li>
+                <Icon name={t.icono} />
+                <span>{t.nombre}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </aside>
+
+  <!-- ============ PANEL DERECHO ============ -->
+  <div class="exp__content">
+    <span class="exp__ghost-num" aria-hidden="true">{numero}</span>
+
+    {
+      enlace && (
+        <a class="exp__link" href={enlace} aria-label={`Ver más sobre ${empresa}`}>
+          <Icon name="lucide:arrow-right" />
+        </a>
+      )
+    }
+
+    <span class="exp__tag">{etiqueta}</span>
+
+    <h3 class="exp__title">{titulo}</h3>
+
+    <p class="exp__date">
+      <Icon name="lucide:calendar-days" />
+      {periodo}
+    </p>
+
+    <i class="exp__accent"></i>
+
+    <ul class="exp__list">
+      {
+        logros.map((logro) => (
+          <li class="exp__item">
+            <div class="exp__icon">
+              <Icon name={logro.icono} />
+            </div>
+            <div class="exp__item-text">
+              <h4>{logro.titulo}</h4>
+              <p>{logro.descripcion}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</article>
+
+<style>
+  .exp {
+    --azul: #2f5bff;
+    --azul-claro: #e6edff;
+    --navy: #0b1226;
+    --texto: #0e1530;
+    --texto-suave: #6a7390;
+    --linea: #e4e8f2;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    max-width: 1100px;
+    margin-inline: auto;
+    overflow: hidden;
+    border-radius: 6px;
+    background: var(--navy);
+    box-shadow: 0 30px 60px -28px rgba(10, 20, 60, 0.45);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--texto);
+  }
+
+  /* ---------- Panel izquierdo ---------- */
+  .exp__side {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem 1.75rem;
+    color: #fff;
+    z-index: 2;
+    isolation: isolate;
+  }
+
+  .exp__bg {
+    position: absolute;
+    inset: 0;
+    width: 140%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.5;
+    filter: saturate(0.7);
+  }
+
+  .exp__shade {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    /* background: linear-gradient(
+      180deg,
+      rgba(11, 18, 38, 0.82) 0%,
+      rgba(11, 18, 38, 0.55) 40%,
+      rgba(11, 18, 38, 0.92) 100%
+    ); */
+  }
+
+  .exp__company {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 2;
+  }
+
+  .exp__logo {
+    flex: 0 0 64px;
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    z-index: 2;
+  }
+
+  .exp__logo :global(svg) {
+    width: 32px;
+    height: 32px;
+  }
+
+  .exp__company-name {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .exp__location {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0.5rem 0 0;
+    font-size: 0.85rem;
+    opacity: 0.85;
+  }
+
+  .exp__location :global(svg) {
+    width: 16px;
+    height: 16px;
+    color: #8fb0ff;
+  }
+
+  /* Caja de tecnologías */
+  .exp__tech {
+    padding: 1.1rem 1.1rem 1.2rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(10px);
+    z-index: 2;
+  }
+
+  .exp__tech-title {
+    margin: 0 0 0.8rem;
+    padding-bottom: 0.7rem;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .exp__tech-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .exp__tech-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.68rem;
+  }
+
+  .exp__tech-list :global(svg) {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* ---------- Panel derecho ---------- */
+  .exp__content {
+    position: relative;
+    padding: 1.2rem 1.5rem 1.2rem 1.5rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f6f8fe 100%);
+    /* corte diagonal arriba a la izquierda: deja ver el fondo oscuro */
+    clip-path: polygon(40px 0, 100% 0, 100% 100%, 0 100%, 0 40px);
+    border-radius: 0 6px 6px 0;
+    z-index: 3;
+  }
+
+  .exp__ghost-num {
+    position: absolute;
+    top: 4.4rem;
+    right: 2.2rem;
+    font-size: 6.5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #e9eefb;
+    pointer-events: none;
+    user-select: none;
+    z-index: 10;
+  }
+
+  .exp__link {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.8rem;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid var(--linea);
+    color: var(--texto);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+  }
+
+  .exp__link:hover {
+    background: var(--azul);
+    border-color: var(--azul);
+    color: #fff;
+    transform: translateX(2px);
+  }
+
+  .exp__link :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+
+  .exp__tag {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--azul);
+    background: var(--azul-claro);
+    border-radius: 8px;
+  }
+
+  .exp__title {
+    max-width: 14ch;
+    margin: 1rem 0 0.9rem;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    z-index: 100;
+  }
+
+  .exp__date {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #4a5472;
+  }
+
+  .exp__date :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+
+  .exp__accent {
+    display: block;
+    width: 38px;
+    height: 2px;
+    margin: 1.4rem 0 1.6rem;
+    background: var(--azul);
+  }
+
+  /* ---------- Lista ---------- */
+  .exp__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .exp__item {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 0.5rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--linea);
+  }
+
+  .exp__item:first-child {
+    padding-top: 0;
+  }
+
+  .exp__item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .exp__icon {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: var(--azul-claro);
+    color: var(--navy);
+  }
+
+  .exp__icon :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+
+  .exp__item-text h4 {
+    margin: 0 0 0.35rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .exp__item-text p {
+    margin: 0;
+    max-width: 56ch;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--texto-suave);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .exp {
+      grid-template-columns: 1fr;
+    }
+
+    .exp__side {
+      min-height: 380px;
+    }
+
+    .exp__content {
+      clip-path: none;
+      border-radius: 0 0 24px 24px;
+      padding: 2rem 1.5rem;
+    }
+
+    .exp__ghost-num {
+      top: 3.6rem;
+      right: 1.2rem;
+      font-size: 4.5rem;
+    }
+
+    .exp__link {
+      right: 1.2rem;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .exp__item {
+      grid-template-columns: 52px 1fr;
+      gap: 1rem;
+    }
+
+    .exp__icon {
+      width: 52px;
+      height: 52px;
+    }
+
+    .exp__title {
+      max-width: none;
+    }
+  }
+</style>

@@ -1,14 +1,23 @@
 ---
-import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
-import imajose from '../assets/FeaturedImage3-4-compressed.png';
-import typejs from '../assets/typejs.png';
-import node from '../assets/node.png';
-import angular from '../assets/angular.png';
-import express from '../assets/express.png';
-import docker from '../assets/docker.png';
-import nest from '../assets/nest.png';
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import imajose from "../assets/FeaturedImage3-4-compressed.png";
+import fondoNeon from "../assets/dark-blue-light-glitch-background.webp";
 
+const contacto = [
+    { color: "purple", icono: "lucide:map-pin", texto: "Ciudad de México. Mx" },
+    { color: "red", icono: "lucide:phone", texto: "+52 758 109 2916" },
+    { color: "blue", icono: "lucide:mail", texto: "jcuevashernandez275" },
+];
+
+const tecnologias = [
+    { icono: "logos:nodejs-icon", nombre: "NodeJs" },
+    { icono: "logos:angular-icon", nombre: "Angular" },
+    { icono: "simple-icons:express", nombre: "ExpressJs" },
+    { icono: "logos:typescript-icon", nombre: "TypeScript" },
+    { icono: "logos:nestjs", nombre: "NestJS" },
+    { icono: "logos:docker-icon", nombre: "Docker" },
+];
 ---
 
 <section class="hero-presentation">
@@ -16,16 +25,20 @@ import nest from '../assets/nest.png';
         <div class="container-info">
             <div class="content-bad">
                 <div class="content-bad-text">
-                    <p> < Programador Full Stack /> </p>
+                    <p> { "< Programador Full Stack />" }</p>
                 </div>
             </div>
             <div class="title-cont">
                 <div class="title-text">Hola, soy</div>
-                <div class="text-color">Juan de la Cruz Cuevas</div>
+                <div class="text-color">Juan de la Cruz</div>
+                <div class="text-color">Cuevas Hernández</div>
             </div>
             <div class="content-description">
                 <p class="desc-text">
-                    Soy Programador Full Stack con experiencia en el desarrollo de aplicaciones web, integración de APIs REST y creación de soluciones digitales utilizando tecnologías como Angular, TypeScript, NestJS y Express.
+                    Soy Programador Full Stack con experiencia en el desarrollo
+                    de aplicaciones web, integración de APIs REST y creación de
+                    soluciones digitales utilizando tecnologías como Angular,
+                    TypeScript, NestJS y Express.
                 </p>
             </div>
             <div class="content-buttons">
@@ -33,163 +46,170 @@ import nest from '../assets/nest.png';
                     <div class="buttons">
                         <button class="mybuttons gradient">
                             Ver Experiencia
+                            <span class="mybuttons__icon">
+                                <Icon name="lucide:arrow-right" />
+                            </span>
                         </button>
                     </div>
 
                     <div class="buttons">
                         <button class="mybuttons cv">
-                            Descarar CV
+                            <span class="mybuttons__icon">
+                                <Icon name="lucide:download" />
+                            </span>
+                            Descargar CV
                         </button>
-                    </div>
-                </div>
-            </div>
-            <div class="content-bullets">
-                <div class="content-list">
-                    <div class="bullets bullet-address">
-                        <div class="bullets-icon">
-                            <div class="bullet-circle purple">
-                                <Icon name="fa6-brands:github" class="icono-hero purple" />
-                            </div>
-                        </div>
-                        <div class="bullet-val purple">
-                            <p class="bullets-text">Ciudad de México. Mx</p>
-                        </div>
-                    </div>
-                    <div class="bullets bullet-address">
-                        <div class="bullets-icon">
-                            <div class="bullet-circle red">
-                                <Icon name="fa6-brands:github" class="icono-hero red" />
-                            </div>
-                        </div>
-                        <div class="bullet-val red">
-                            <p class="bullets-text">+52 758 109 2916</p>
-                        </div>
-                    </div>
-                    <div class="bullets bullet-address">
-                        <div class="bullets-icon">
-                            <div class="bullet-circle blue">
-                                <Icon name="fa6-brands:github" class="icono-hero blue" />
-                            </div>
-                        </div>
-                        <div class="bullet-val blue">
-                            <p class="bullets-text">jcuevashernandez275</p>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container-image">
-            <Image src={imajose} alt="Descripción de la imagen" class="ima-perfil"/>
+            <Image
+                src={imajose}
+                alt="Descripción de la imagen"
+                class="ima-perfil"
+            />
+
             <div class="floatin-tec">
                 <div class="float-card">
-                    <div class="card-list">
-                        <Image src={node} alt="Descripción de la imagen" class="ima-tec"/>
-                        <p>NodeJs</p>
-                    </div>
-                    <div class="card-list">
-                        <Image src={angular} alt="Descripción de la imagen" class="ima-tec"/>
-                        <p>Angular</p>
-                    </div>
-                    <div class="card-list">
-                        <Image src={express} alt="Descripción de la imagen" class="ima-tec"/>
-                        <p>ExpressJs</p>
-                    </div>
-                    <div class="card-list">
-                        <Image src={typejs} alt="Descripción de la imagen" class="ima-tec"/>
-                        <p>TypeScript</p>
-                    </div>
-                    <div class="card-list">
-                        <Image src={nest} alt="Descripción de la imagen" class="ima-tec"/>
-                        <p>NestJS</p>
-                    </div>
-                    <div class="card-list">
-                        <Image src={docker} alt="Descripción de la imagen" class="ima-tec"/>
-                        <p>Docker</p>
-                    </div>
+                    {
+                        tecnologias.map((tec) => (
+                            <div class="card-list">
+                                <Icon name={tec.icono} class="ima-tec" />
+                                <p>{tec.nombre}</p>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         </div>
     </div>
+
+    <Image 
+        src={fondoNeon}
+        alt="Descripción de la imagen"
+        class="fondo-neon" 
+    />
     <canvas class="mycanvas" id="mycanvashero"></canvas>
 </section>
 
 <style>
-    .fondo-hero {
+    .hero-presentation {
         width: 100%;
-        height: 670px;
-        object-fit: cover;
-        inset: 0;
-        position: absolute;
-        background: #000107;
-    }
-
-    .hero-presentation { 
-        width: 100%;
-        height: 670px;
+        height: 650px;
         display: flex;
         align-items: center;
         justify-content: center;
         background: #000107;
-        z-index: 2;    
-    } 
+        z-index: 2;
+        flex-direction: column;
+    }
 
     .hero-container {
         width: 85%;
-        height: 670px;
+        height: 620px;
         display: flex;
         gap: 20px;
         align-items: center;
-        z-index: 50;
+        z-index: 75;
         justify-content: center;
     }
 
     .container-info {
-        width: 55%;
-        height: 540px;
+        width: 50%;
+        height: 420px;
         display: flex;
-    
         justify-content: end;
         flex-direction: column;
         gap: 15px;
+        z-index: 55;
+    }
+
+    .content-bad {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: end;
+    }
+
+    .content-bad-text {
+        width: fit-content;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        padding: 0 15px;
+        background: linear-gradient(to right, #c605e8, #08befd);
+    }
+
+    .content-bad-text p {
+        color: #f6f7ff;
+        font-weight: 500;
+        font-size: 15px;
     }
 
     .title-cont {
         width: 100%;
-        height: 120px;
+        height: 150px;
         display: flex;
-        align-items: center;
         justify-content: center;
         flex-direction: column;
     }
 
-    .title-cont div {
-        width: 100%;
-        height: 60px;
-        font-size: 60px;
-        color: #fff;
-        font-weight: 900;
-
+    /* "HOLA, SOY": pequeño, en mayúsculas y con letras separadas */
+    .title-text {
+        margin-bottom: 0.9rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
         text-transform: uppercase;
-        letter-spacing: -0.72px;
-         display: flex;
-         align-items: center;
+        color: #9aa6c4;
         line-height: 1;
     }
 
-    .title-cont .text-color {
-        display: inline;
-        font-weight: 900;
-        background: linear-gradient(to right, #08befd, #C605E8); /* 1. Define el degradado */
-        -webkit-background-clip: text;                          /* 2. Recorta el fondo al texto */
-        -webkit-text-fill-color: transparent;   
+    /* Las dos líneas del nombre */
+    .text-color {
+        font-size: clamp(2.2rem, 4.4vw, 3.7rem);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.02em;
+    }
+
+    /* Línea 1: blanca */
+    .text-color:nth-child(2) {
+        color: #fff;
+        background: none;
+    }
+
+    /* Línea 2: degradado azul a violeta */
+    .text-color:nth-child(3) {
+        width: fit-content;
+        background: linear-gradient(
+            90deg,
+            #2f7bff 0%,
+            #6d5cff 60%,
+            #8b5cf6 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
     }
 
     .content-description {
-        width: 70%;
+        width: 75%;
         height: 90px;
         display: flex;
         align-items: center;
-        justify-content: center;
+        gap: 25px;
+        justify-content: space-between;
+    }
+
+    .content-description::before {
+        content: "";
+        width: 2px;
+        height: 80px;
+        background: #8d05f8;
     }
 
     .content-description .desc-text {
@@ -197,312 +217,263 @@ import nest from '../assets/nest.png';
         font-size: 15px;
     }
 
-    .content-buttons {
-        width: 100%;
-        height: 55px;
-    }
-
     .buttons-section {
-        width: 85%;
-        height: 55px;
         display: flex;
-        gap: 15px;
-        align-items: center;
-        justify-content: space-around;
-    }
-
-    .buttons {
-        flex: 1;
-        height: 50px;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
     .mybuttons {
-        width: 100%;
-        border: none;
-        height: 50px;
-        font-size: 15px;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+        height: 56px;
+        border: 0;
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 600;
         color: #fff;
-        border-radius: 9px;
-        background: rgba(0, 0, 0, 0.542);
+        cursor: pointer;
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
     }
 
+    .mybuttons:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Círculo del icono */
+    .mybuttons__icon {
+        width: 35px;
+        height: 35px;
+        display: grid;
+        place-items: center;
+        border-radius: 6px;
+        flex-shrink: 0;
+        transition: transform 0.2s ease;
+    }
+
+    .mybuttons__icon :global(svg) {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* ---------- Botón 1: degradado ---------- */
     .mybuttons.gradient {
-        border: 2px solid transparent; /* Grosor del borde */
-        background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.13), rgba(0, 0, 0, 0.163)), /* Fondo oscuro transparente (RGBA) */
-        linear-gradient(to right, rgb(8, 190, 253), rgb(141, 5, 248)); /* Los colores de tu degradado */
-        
-        background-origin: border-box;
-        background-clip: padding-box, border-box;
+        padding: 0 2rem 0 2.5rem;
+        background: linear-gradient(
+            90deg,
+            #b01ee0 0%,
+            #e8346f 60%,
+            #ff4a2a 100%
+        );
+
+        border: 3px solid #fff;
     }
 
-    .mybuttons.cv {
-        border: 1px solid #fff;
+    .mybuttons.gradient .mybuttons__icon {
+        background: #fff1f3;
+        color: #f0403a;
     }
 
-    .content-bullets {
-        width: 100%;
-        height: 75px;
+    .mybuttons.gradient:hover .mybuttons__icon {
+        transform: translateX(3px);
     }
 
-    .content-list {
-        width: 100%;
-        height: 75px;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-         gap: 10px;
-    }
-
-    .bullets {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        justify-content: center;
-    }
-
-    .bullets-icon {
-        width: 50px;
-        height: 75px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .bullet-circle {
-        width: 50px;
-        height: 45px;
-        border-radius: 9px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .bullet-circle.purple  {
-        border: 1px solid #8D05F8;
-        background: #8D05F84b;
-    }
-
-    .bullet-circle.red  {
-        border: 1px solid #EA346E;
-        background: #ea346e35;
-    }
-    
-    .bullet-circle.blue  {
-        border: 1px solid #2659ED;
-        background: #2659ED35;
-    }
-
-    .icono-hero {
-        width: 24px;
-        height: 24px;
-    }
-
-    .icono-hero.purple {
-        color: #8D05F8;
-    }
-    
-    .icono-hero.red {
-        color: #EA346E;
-    }
-
-    .icono-hero.blue {
-        color: #2659ED;
-    }
-
-    .bullet-val {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .bullet-val::after {
+    /* puntito decorativo abajo a la izquierda */
+    .mybuttons.gradient::before {
         content: "";
-        width: 50px;
-        height: 4px;
-        border-radius: 999px;
+        position: absolute;
+        left: 14px;
+        bottom: 6px;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: #e8b4ff;
     }
 
-    .bullet-val.purple::after {
-        background: #8D05F8;
+    /* ---------- Botón 2: contorno ---------- */
+    .mybuttons.cv {
+        padding: 0 2.5rem 0 2rem;
+        background: rgba(10, 16, 48, 0.193);
+        border: 1px solid #5b5cf0;
     }
 
-    .bullet-val.red::after {
-        background: #EA346E;
-    }
-
-    .bullet-val.blue::after {
-        background: #2659ED;
-    }
-
-    .bullets-text {
-        font-size: 15px;
-        font-weight: 400;
+    .mybuttons.cv .mybuttons__icon {
+        border: 1.5px solid rgba(255, 255, 255, 0.9);
         color: #fff;
+    }
+
+    .mybuttons.cv:hover .mybuttons__icon {
+        transform: translateY(2px);
+    }
+
+    /* punto azul decorativo abajo a la derecha */
+    .mybuttons.cv::after {
+        content: "";
+        position: absolute;
+        right: 18px;
+        bottom: -4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #3b82f6;
     }
 
     .container-image {
-        width: 44%;
-        height: 640px;
+        width: 50%;
+        height: 650px;
         display: flex;
         align-items: end;
         position: relative;
         justify-content: center;
+        z-index: 3;
     }
 
     .container-image .ima-perfil {
         position: relative;
         width: 100%;
-        height: 540px;
+        height: 580px;
         filter: drop-shadow(0 0 8px #0e2675) drop-shadow(0 0 20px #102d8c);
     }
 
-       .content-bad { 
-        width: 100%;
-        height: 60px;
-        display: flex;
-        align-items: end;
-    } 
-    
-    .content-bad-text { 
-        width: fit-content;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 9px;
-        padding: 0 15px;
-        background: linear-gradient(to right, #C605E8, #08befd);
-    } 
-
-    .content-bad-text p  { 
-        color: #f6f7ff;
-        font-weight: 700;
-        font-size: 15px;
-    } 
-
-    .floatin-tec { 
+    .floatin-tec {
         width: 190px;
         height: 250px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(to right, #010613, #020e2c) ;
-        z-index: 2;  
+        background: linear-gradient(to right, #010613, #020e2c);
+        z-index: 2;
         position: absolute;
-        top: 120px; 
-        right: -50px; 
+        top: 120px;
+        right: -50px;
 
         clip-path: polygon(
-            20px 0,                        /* arriba, después del corte izq. */
-            100% 0,                                /* arriba derecha */
-            100% calc(100% - 20px),        /* derecha, antes del corte inferior */
-            calc(100% - 20px) 100%,        /* abajo, antes del corte der. */
-            0 100%,                                /* abajo izquierda */
-            0 20px              /* izquierda, debajo del corte */
+            20px 0,
+            /* arriba, después del corte izq. */ 100% 0,
+            /* arriba derecha */ 100% calc(100% - 20px),
+            /* derecha, antes del corte inferior */ calc(100% - 20px) 100%,
+            /* abajo, antes del corte der. */ 0 100%,
+            /* abajo izquierda */ 0 20px /* izquierda, debajo del corte */
         );
         border-radius: 6px;
         border: 1px solid #efd4f460;
-    } 
+    }
 
-    .float-card  { 
+    .float-card {
         width: 150px;
         height: 210px;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column; 
+        flex-direction: column;
         gap: 2px;
-    } 
+    }
 
-    .card-list { 
+    .card-list {
         width: 100%;
         height: 35px;
         display: flex;
         gap: 10px;
         align-items: center;
-        flex-direction: row; 
-    
-    } 
+        flex-direction: row;
+    }
 
-    .ima-tec { 
-        width: 25px;
-        height: 25px;
+    .ima-tec {
+        width: 20px;
+        height: 20px;
         object-fit: cover;
-        border-radius: 999px;
-    } 
+    }
 
-    .card-list p { 
+    .card-list p {
         color: #afb4e1;
         font-size: 14px;
-    } 
+    }
+
+    .fondo-neon {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        bottom: 0;
+        object-fit: cover;
+        opacity: 1;
+    }
 
     .mycanvas {
         width: 100%;
         height: 100%;
         position: absolute;
         top: 0;
-        z-index: 10;
+        z-index: 50;
     }
-
 </style>
 
 <script>
-    import type { myLineas } from '../types/lineas';
+    import type { myLineas } from "../types/lineas";
 
-    document.addEventListener( 'DOMContentLoaded', () => { 
-        const canvas = document.querySelector<HTMLCanvasElement>('#mycanvashero');
-            
-        if ( ! canvas ) return;
+    document.addEventListener("DOMContentLoaded", () => {
+        const canvas =
+            document.querySelector<HTMLCanvasElement>("#mycanvashero");
 
-        const ctx = canvas.getContext('2d');
-        if ( !ctx ) return;
+        if (!canvas) return;
 
-        const updatePantalla = () => { 
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        const updatePantalla = () => {
             canvas.width = window.innerWidth;
-            canvas.height = 670; 
-        }
-        updatePantalla()
-        window.addEventListener('resize', updatePantalla);
+            canvas.height = 670;
+        };
+        updatePantalla();
+        window.addEventListener("resize", updatePantalla);
 
         const cannt = 12;
-        const arrLineas:  myLineas[] = [];
+        const arrLineas: myLineas[] = [];
 
-        class Lluvia { 
+        class Lluvia {
             x: number;
             y: number;
             l: number;
             v: number;
             opa: number;
 
-            constructor( canvas: HTMLCanvasElement) {
+            constructor(canvas: HTMLCanvasElement) {
                 this.x = Math.random() * canvas.width;
-                this.y = Math.random() * -canvas.height; 
-                this.v = 2 + Math.random() * 12; 
-                this.l = 40 + Math.random() * 60; 
-                this.opa = 0.3 + Math.random() * 0.5; 
+                this.y = Math.random() * -canvas.height;
+                this.v = 2 + Math.random() * 12;
+                this.l = 40 + Math.random() * 60;
+                this.opa = 0.3 + Math.random() * 0.5;
             }
-            
+
             drawLineas(): void {
-                if ( !ctx ) return; 
-                const gradiente = ctx.createLinearGradient(this.x, this.y, this.x, this.y + this.l);
-                gradiente.addColorStop(0, 'rgba(174, 219, 255, 0)'); // Desaparece arriba
+                if (!ctx) return;
+                const gradiente = ctx.createLinearGradient(
+                    this.x,
+                    this.y,
+                    this.x,
+                    this.y + this.l,
+                );
+                gradiente.addColorStop(0, "rgba(174, 219, 255, 0)"); // Desaparece arriba
                 gradiente.addColorStop(1, `rgba(174, 219, 255, ${this.opa})`); // Punta brillante abajo
 
                 ctx.beginPath();
                 ctx.moveTo(this.x, this.y);
                 ctx.lineTo(this.x, this.y + this.l);
-                
+
                 ctx.strokeStyle = gradiente;
                 ctx.lineWidth = 2;
-                ctx.lineCap = 'round';
+                ctx.lineCap = "round";
                 ctx.stroke();
             }
 
             updateLineas(): void {
                 this.y += this.v;
-                
-                if ( ! canvas ) return;
+
+                if (!canvas) return;
 
                 if (this.y - this.l > canvas.height) {
                     this.reset();
@@ -510,33 +481,33 @@ import nest from '../assets/nest.png';
             }
 
             reset(): void {
-                if ( ! canvas ) return;
+                if (!canvas) return;
                 this.x = Math.random() * canvas.width;
-                this.y = Math.random() * -canvas.height; 
-                this.v = 2 + Math.random() * 2; 
-                this.l = 40 + Math.random() * 60; 
-                this.opa = 0.3 + Math.random() * 0.5; 
+                this.y = Math.random() * -canvas.height;
+                this.v = 2 + Math.random() * 2;
+                this.l = 40 + Math.random() * 60;
+                this.opa = 0.3 + Math.random() * 0.5;
             }
         }
 
-        const create = () => { 
-            for( let i = 0; i < cannt; i++ ) { 
-                arrLineas.push( new Lluvia(canvas) );
+        const create = () => {
+            for (let i = 0; i < cannt; i++) {
+                arrLineas.push(new Lluvia(canvas));
             }
-        } 
+        };
 
         create();
 
-        const animar = () => { 
+        const animar = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            arrLineas.forEach( (linea) => {
+            arrLineas.forEach((linea) => {
                 linea.updateLineas();
                 linea.drawLineas();
             });
 
             requestAnimationFrame(animar);
-        }
+        };
         animar();
-    })
+    });
 </script>

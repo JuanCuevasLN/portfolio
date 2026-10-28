@@ -1,0 +1,318 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+
+// Ajusta la ruta/extensión a donde tengas tu foto
+import imajose from '../assets/imajose.png';
+
+const contacto = [
+  { color: 'purple', icono: 'lucide:map-pin', texto: 'Ciudad de México. Mx' },
+  { color: 'red', icono: 'lucide:phone', texto: '+52 758 109 2916' },
+  { color: 'blue', icono: 'lucide:mail', texto: 'jcuevashernandez275' },
+];
+
+const tecnologias = [
+  { icono: 'logos:nodejs-icon', nombre: 'NodeJs' },
+  { icono: 'logos:angular-icon', nombre: 'Angular' },
+  { icono: 'simple-icons:express', nombre: 'ExpressJs' },
+  { icono: 'logos:typescript-icon', nombre: 'TypeScript' },
+  { icono: 'logos:nestjs', nombre: 'NestJS' },
+  { icono: 'logos:docker-icon', nombre: 'Docker' },
+];
+---
+
+<section class="hero-presentation">
+  <div class="hero-container">
+    <!-- ============ INFO (40%) ============ -->
+    <div class="container-info">
+      <div class="content-bad">
+        <div class="content-bad-text">
+          <p>&lt; Programador Full Stack /&gt;</p>
+        </div>
+      </div>
+
+      <div class="title-cont">
+        <div class="title-text">Hola, soy</div>
+        <div class="text-color">Juan de la Cruz Cuevas</div>
+      </div>
+
+      <div class="content-description">
+        <p class="desc-text">
+          Soy Programador Full Stack con experiencia en el desarrollo de aplicaciones web,
+          integración de APIs REST y creación de soluciones digitales utilizando tecnologías
+          como Angular, TypeScript, NestJS y Express.
+        </p>
+      </div>
+
+      <div class="content-buttons">
+        <div class="buttons-section">
+          <div class="buttons">
+            <button class="mybuttons gradient">Ver Experiencia</button>
+          </div>
+          <div class="buttons">
+            <button class="mybuttons cv">Descargar CV</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bullets: pegados al fondo de la columna -->
+      <div class="content-bullets">
+        <div class="content-list">
+          {
+            contacto.map((c) => (
+              <div class="bullets bullet-address">
+                <div class="bullets-icon">
+                  <div class={`bullet-circle ${c.color}`}>
+                    <Icon name={c.icono} class={`icono-hero ${c.color}`} />
+                  </div>
+                </div>
+                <div class={`bullet-val ${c.color}`}>
+                  <p class="bullets-text">{c.texto}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ FOTO (40%) ============ -->
+    <div class="container-image">
+      <Image src={imajose} alt="Foto de Juan de la Cruz Cuevas" class="ima-perfil" />
+
+      <div class="floatin-tec">
+        <div class="float-card">
+          {
+            tecnologias.map((t) => (
+              <div class="card-list">
+                <Icon name={t.icono} class="ima-tec" />
+                <p>{t.nombre}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <canvas class="mycanvas" id="mycanvashero"></canvas>
+</section>
+
+<style>
+  .hero-presentation {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 640px;
+    padding: 3rem 5%;
+    overflow: hidden;
+    color: #fff;
+  }
+
+  /* La lluvia queda detrás del contenido */
+  .mycanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ---------- Reparto 40% / 40% ---------- */
+  .hero-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 40% 40%;
+    justify-content: center;
+    column-gap: 10%;
+    align-items: stretch;
+    min-height: 520px;
+  }
+
+  /* ---------- Columna de info ---------- */
+  .container-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 0;
+  }
+
+  .content-bad-text p {
+    display: inline-block;
+    margin: 0;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #a9b8ff;
+    background: rgba(120, 140, 255, 0.12);
+    border: 1px solid rgba(120, 140, 255, 0.3);
+    border-radius: 999px;
+  }
+
+  .title-text {
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-weight: 500;
+  }
+
+  .text-color {
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    background: linear-gradient(90deg, #8ea2ff, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .desc-text {
+    margin: 0;
+    max-width: 52ch;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #b9c2dd;
+  }
+
+  .buttons-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .mybuttons {
+    padding: 0.85rem 1.6rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .mybuttons:hover {
+    transform: translateY(-2px);
+  }
+
+  .mybuttons.gradient {
+    border: 0;
+    background: linear-gradient(90deg, #4f6bff, #9a5cff);
+  }
+
+  /* ---------- Bullets al fondo ---------- */
+  .content-bullets {
+    margin-top: auto; /* los empuja al final de la columna */
+    padding-top: 1.5rem;
+  }
+
+  .content-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.75rem;
+  }
+
+  .bullets {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .bullet-circle {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+  }
+
+  .bullet-circle.purple { background: rgba(167, 139, 250, 0.16); color: #a78bfa; }
+  .bullet-circle.red    { background: rgba(248, 113, 113, 0.16); color: #f87171; }
+  .bullet-circle.blue   { background: rgba(96, 165, 250, 0.16);  color: #60a5fa; }
+
+  .bullet-circle :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+
+  .bullets-text {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #dbe2f5;
+  }
+
+  /* ---------- Columna de foto ---------- */
+  .container-image {
+    position: relative;
+    min-height: 520px;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 24px;
+  }
+
+  .container-image :global(.ima-perfil) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Tarjeta de tecnologías al fondo de la foto */
+  .floatin-tec {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .float-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    background: rgba(11, 18, 38, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    backdrop-filter: blur(12px);
+  }
+
+  .card-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .card-list p {
+    margin: 0;
+    font-size: 0.7rem;
+    color: #dbe2f5;
+  }
+
+  .card-list :global(.ima-tec) {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      row-gap: 2rem;
+    }
+
+    .container-image {
+      min-height: 420px;
+    }
+
+    .content-bullets {
+      margin-top: 0;
+    }
+  }
+</style>

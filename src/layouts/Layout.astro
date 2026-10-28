@@ -1,10 +1,10 @@
 ---
+import '@fontsource/ibm-plex-sans';
+import Hero from '../components/Hero.astro';
 import Loader from '../components/Loader.astro';
 import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Abouts from '../components/Abouts.astro';
-import Experience from '../components/Experience.astro';
-import '@fontsource/ibm-plex-sans';
+import Experiencia from '../components/Experiencia.astro';
+import ProyectosDestacados from '../components/Proyectos.astro';
 ---
 
 <!doctype html>
@@ -21,9 +21,8 @@ import '@fontsource/ibm-plex-sans';
 		<Loader />
 		<Header />
 		<Hero />
-        <Abouts />
-        <Experience />
-
+        <Experiencia />
+        <ProyectosDestacados />
 		<!-- <canvas id="mycanvas"></canvas> -->
 		<slot />
 	</body>
