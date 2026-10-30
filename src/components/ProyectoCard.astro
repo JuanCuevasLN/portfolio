@@ -1,0 +1,457 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Logro {
+  icono: string;
+  titulo: string;
+  descripcion: string;
+}
+
+interface Tecnologia {
+  icono: string;
+  nombre: string;
+}
+
+interface Props {
+  etiqueta?: string;
+  tituloLinea1: string;
+  tituloLinea2?: string;
+  descripcion: string;
+  tipo?: string;
+  periodo?: string;
+  imagen: ImageMetadata | string;
+  imagenAlt?: string;
+  logros: Logro[];
+  tecnologias?: Tecnologia[];
+  enlace?: string;
+  textoEnlace?: string;
+  invertido?: boolean; // true = imagen a la izquierda
+}
+
+const {
+  etiqueta = 'Proyecto destacado',
+  tituloLinea1,
+  tituloLinea2,
+  descripcion,
+  tipo,
+  periodo,
+  imagen,
+  imagenAlt = tituloLinea1,
+  logros,
+  tecnologias = [],
+  enlace,
+  textoEnlace = 'Ver proyecto',
+  invertido = false,
+} = Astro.props;
+---
+
+<article class:list={['proy', { 'proy--invertido': invertido }]}>
+  <!-- ============ TEXTO ============ -->
+  <div class="proy__info">
+    <span class="proy__tag">
+      <span class="proy__tag-icon"><Icon name="lucide:code-xml" /></span>
+      {etiqueta}
+    </span>
+
+    <h3 class="proy__title">
+      {tituloLinea1}
+      {tituloLinea2 && <span>{tituloLinea2}</span>}
+    </h3>
+
+    <p class="proy__desc">{descripcion}</p>
+
+    <ul class="proy__logros">
+      {
+        logros.map((l) => (
+          <li class="proy__logro">
+            <span class="proy__logro-icon">
+              <Icon name={l.icono} />
+            </span>
+            <h4>{l.titulo}</h4>
+            <p>{l.descripcion}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      tecnologias.length > 0 && (
+        <div class="proy__tech">
+          <span class="proy__tech-label">Tecnologías</span>
+          <ul class="proy__tech-list">
+            {tecnologias.map((t) => (
+              <li>
+                <Icon name={t.icono} />
+                <span>{t.nombre}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+  </div>
+
+  <!-- ============ IMAGEN ============ -->
+  <div class="proy__visual">
+    <div class="proy__img">
+      {
+        typeof imagen === 'string' ? (
+          <img src={imagen} alt={imagenAlt} loading="lazy" />
+        ) : (
+          <Image src={imagen} alt={imagenAlt} />
+        )
+      }
+    </div>
+
+    <div class="proy__glass">
+      {
+        (tipo || periodo) && (
+          <ul class="proy__meta">
+            {tipo && (
+              <li>
+                <Icon name="lucide:graduation-cap" />
+                {tipo}
+              </li>
+            )}
+            {periodo && (
+              <li>
+                <Icon name="lucide:calendar-days" />
+                {periodo}
+              </li>
+            )}
+          </ul>
+        )
+      }
+      <p class="proy__glass-title">{tituloLinea1} {tituloLinea2}</p>
+
+      {
+        enlace && (
+          <a class="proy__btn" href={enlace}>
+            <Icon name="lucide:arrow-right" />
+            {textoEnlace}
+            <Icon name="lucide:arrow-right" />
+          </a>
+        )
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  .proy {
+    --rosa: #ff2d78;
+    --morado: #8b3dff;
+    --azul: #4f8cff;
+    --texto: #0b0f2a;
+    --suave: #5d6684;
+    --linea: #cfdcf5;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3.5rem;
+    align-items: center;
+    max-width: 1200px;
+    margin-inline: auto;
+    color: var(--texto);
+    font-family: 'Montserrat', 'Inter', system-ui, sans-serif;
+  }
+
+  .proy--invertido .proy__info {
+    order: 2;
+  }
+
+  /* ---------- Info ---------- */
+  .proy__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 0;
+  }
+
+  .proy__tag {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.5rem 1.1rem 0.5rem 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(90deg, #ff2d6f, #ff4d8a);
+    border-radius: 12px;
+  }
+
+  .proy__tag-icon {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.22);
+  }
+
+  .proy__tag-icon :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+
+  .proy__title {
+    margin: 0;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  .proy__title span {
+    display: block;
+    width: fit-content;
+    background: linear-gradient(90deg, var(--rosa) 0%, var(--morado) 65%, var(--azul) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .proy__desc {
+    margin: 0;
+    max-width: 58ch;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--suave);
+  }
+
+  /* ---------- Logros (tarjetas) ---------- */
+  .proy__logros {
+    list-style: none;
+    margin: 0.25rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+  }
+
+  .proy__logro {
+    padding: 1.1rem 1.2rem 1.25rem;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--linea);
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .proy__logro:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px -16px rgba(60, 90, 220, 0.45);
+  }
+
+  .proy__logro-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 0.8rem;
+    color: #2f6bff;
+    background: #e8f0ff;
+    border-radius: 14px;
+  }
+
+  .proy__logro-icon :global(svg) {
+    width: 24px;
+    height: 24px;
+  }
+
+  .proy__logro h4 {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0e1747;
+  }
+
+  .proy__logro p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--suave);
+  }
+
+  /* ---------- Tecnologías ---------- */
+  .proy__tech {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.9rem 1.2rem;
+    margin-top: 0.25rem;
+  }
+
+  .proy__tech-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--suave);
+  }
+
+  .proy__tech-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .proy__tech-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.9rem 0.45rem 0.6rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: #fff;
+    border: 1px solid var(--linea);
+    border-radius: 999px;
+  }
+
+  .proy__tech-list :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* ---------- Visual ---------- */
+  .proy__visual {
+    position: relative;
+    min-width: 0;
+    padding-bottom: 3rem;
+  }
+
+  .proy__img {
+    aspect-ratio: 16 / 13;
+    overflow: hidden;
+    box-shadow: 0 30px 50px -24px rgba(60, 40, 160, 0.5);
+    /* cortes en esquina superior izquierda e inferior derecha */
+    clip-path: polygon(
+      0 70px,
+      70px 0,
+      100% 0,
+      100% calc(100% - 90px),
+      calc(100% - 90px) 100%,
+      0 100%
+    );
+  }
+
+  .proy__img :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Tarjeta de vidrio sobre la imagen */
+  .proy__glass {
+    position: absolute;
+    left: -2rem;
+    bottom: 0;
+    width: min(380px, 78%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.3rem 1.4rem;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 18px;
+    backdrop-filter: blur(16px) saturate(1.3);
+    -webkit-backdrop-filter: blur(16px) saturate(1.3);
+    box-shadow: 0 18px 40px -20px rgba(40, 40, 140, 0.5);
+  }
+
+  .proy__meta {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #2a3358;
+  }
+
+  .proy__meta li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .proy__meta :global(svg) {
+    width: 17px;
+    height: 17px;
+    color: #2f6bff;
+  }
+
+  .proy__glass-title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #0b1240;
+  }
+
+  .proy__btn {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(90deg, #ff2d78, #8b3dff 60%, #4f8cff);
+    border-radius: 999px;
+    transition: transform 0.2s ease;
+  }
+
+  .proy__btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .proy__btn :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 960px) {
+    .proy {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .proy--invertido .proy__info {
+      order: 0;
+    }
+
+    .proy__glass {
+      left: 1rem;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .proy {
+      padding: 1rem;
+    }
+
+    .proy__glass {
+      position: static;
+      width: 100%;
+      margin-top: -2.5rem;
+    }
+
+    .proy__visual {
+      padding-bottom: 0;
+    }
+  }
+</style>

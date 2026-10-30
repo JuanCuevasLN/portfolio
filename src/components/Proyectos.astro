@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import Gastro from '../assets/glitched-robot-face-portrait.webp';
 import villalon from '../assets/villalon.png';
 import finanza from '../assets/finanzas.png';
+import ProyectoCard from "./ProyectoCard.astro";
 ---
 
 <section class="section-experience">
@@ -18,7 +19,80 @@ import finanza from '../assets/finanzas.png';
         </div>
     </div>
     <div class="section-information-project">
+        <div class="section-project">
+                    <ProyectoCard
+            etiqueta="Proyecto destacado"
+            tituloLinea1="Sistema de pedidos y"
+            tituloLinea2="gestión de repartos"
+            descripcion="Sistema de pedidos y entregas inspirado en plataformas como Uber Eats y DiDi Food, con roles diferenciados para clientes, repartidores y administradores."
+            tipo="Proyecto académico"
+            periodo="Mayo 2022 – Abril 2023"
+            imagen={villalon}
+            logros={[
+                {
+                icono: 'lucide:users',
+                titulo: 'Roles diferenciados',
+                descripcion: 'Flujos separados para clientes, repartidores y administradores.',
+                },
+                {
+                icono: 'lucide:shopping-cart',
+                titulo: 'Productos y carritos',
+                descripcion: 'Gestión de productos, categorías, carritos y flujo de pedidos.',
+                },
+                {
+                icono: 'lucide:bike',
+                titulo: 'Asignación de repartidores',
+                descripcion: 'El administrador asigna cada pedido a un repartidor.',
+                },
+                {
+                icono: 'lucide:database',
+                titulo: 'Backend y base de datos',
+                descripcion: 'Conexión de la aplicación con el backend para gestionar las operaciones.',
+                },
+            ]}
+            tecnologias={[
+                { icono: 'logos:angular-icon', nombre: 'Angular' },
+                { icono: 'logos:nestjs', nombre: 'NestJS' },
+            ]}
+        />
 
+        <ProyectoCard
+            etiqueta="Proyecto destacado"
+            tituloLinea1="Sistema de pedidos y"
+            tituloLinea2="gestión de repartos"
+            descripcion="Sistema de pedidos y entregas inspirado en plataformas como Uber Eats y DiDi Food, con roles diferenciados para clientes, repartidores y administradores."
+            tipo="Proyecto académico"
+            periodo="Mayo 2022 – Abril 2023"
+            imagen={villalon}
+            logros={[
+                {
+                icono: 'lucide:users',
+                titulo: 'Roles diferenciados',
+                descripcion: 'Flujos separados para clientes, repartidores y administradores.',
+                },
+                {
+                icono: 'lucide:shopping-cart',
+                titulo: 'Productos y carritos',
+                descripcion: 'Gestión de productos, categorías, carritos y flujo de pedidos.',
+                },
+                {
+                icono: 'lucide:bike',
+                titulo: 'Asignación de repartidores',
+                descripcion: 'El administrador asigna cada pedido a un repartidor.',
+                },
+                {
+                icono: 'lucide:database',
+                titulo: 'Backend y base de datos',
+                descripcion: 'Conexión de la aplicación con el backend para gestionar las operaciones.',
+                },
+            ]}
+            tecnologias={[
+                { icono: 'logos:angular-icon', nombre: 'Angular' },
+                { icono: 'logos:nestjs', nombre: 'NestJS' },
+            ]}
+            invertido={true}
+        />
+        </div>
     </div>
 </section>
 
@@ -27,6 +101,7 @@ import finanza from '../assets/finanzas.png';
         width: 100%;
         height: auto;
         background: #000107;
+        background: #fff;
         position: relative;
         z-index: 2000;
     }
@@ -61,12 +136,12 @@ import finanza from '../assets/finanzas.png';
         transform: translateY( var(--translateY) );
         opacity: var(--opacidad);
 
-        color: #dce6ee;
         z-index: 10;
 
         font-size: 50px;
         font-weight: 700;
-        color: #dce6ee;
+        /* color: #dce6ee; */
+        color: #000107
         letter-spacing: -2.5;
         line-height: 1;
     }
@@ -86,7 +161,7 @@ import finanza from '../assets/finanzas.png';
         transform: scale( var(--scaleVal));
         position: absolute;
         object-fit: cover;
-        border-radius: 9px;
+        border-radius: 3px;
     }
 
     .proyect-img.one {
@@ -114,8 +189,21 @@ import finanza from '../assets/finanzas.png';
 
     .section-information-project {
         width: 100%;
-        height: 550px;
+        height: auto;
         background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section-project {
+        width: 90%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
     }
 </style>
 
