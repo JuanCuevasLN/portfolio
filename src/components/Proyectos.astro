@@ -5,11 +5,13 @@ import Gastro from '../assets/glitched-robot-face-portrait.webp';
 import villalon from '../assets/villalon.png';
 import finanza from '../assets/finanzas.png';
 import ProyectoCard from "./ProyectoCard.astro";
+import bg from '../assets/step-bg.webp'
 ---
 
 <section class="section-experience">
     <div class="section-title-sticky-height">
         <div class="section-title-and-img-sticky">
+             <Image src={bg} alt="Descripción de la imagen" class='proyect-bg-section one' />
             <h2 class="title-sticky">Proyectos destacados</h2>
             <div class="sectio-ima-sticky">
                 <Image src={Gastro} alt="Descripción de la imagen" class='proyect-img one' />
@@ -20,83 +22,126 @@ import ProyectoCard from "./ProyectoCard.astro";
     </div>
     <div class="section-information-project">
         <div class="section-project">
-                    <ProyectoCard
-            etiqueta="Proyecto destacado"
-            tituloLinea1="Sistema de pedidos y"
-            tituloLinea2="gestión de repartos"
-            descripcion="Sistema de pedidos y entregas inspirado en plataformas como Uber Eats y DiDi Food, con roles diferenciados para clientes, repartidores y administradores."
-            tipo="Proyecto académico"
-            periodo="Mayo 2022 – Abril 2023"
-            imagen={villalon}
-            logros={[
-                {
-                icono: 'lucide:users',
-                titulo: 'Roles diferenciados',
-                descripcion: 'Flujos separados para clientes, repartidores y administradores.',
-                },
-                {
-                icono: 'lucide:shopping-cart',
-                titulo: 'Productos y carritos',
-                descripcion: 'Gestión de productos, categorías, carritos y flujo de pedidos.',
-                },
-                {
-                icono: 'lucide:bike',
-                titulo: 'Asignación de repartidores',
-                descripcion: 'El administrador asigna cada pedido a un repartidor.',
-                },
-                {
-                icono: 'lucide:database',
-                titulo: 'Backend y base de datos',
-                descripcion: 'Conexión de la aplicación con el backend para gestionar las operaciones.',
-                },
-            ]}
-            tecnologias={[
-                { icono: 'logos:angular-icon', nombre: 'Angular' },
-                { icono: 'logos:nestjs', nombre: 'NestJS' },
-            ]}
-        />
-
-        <ProyectoCard
-            etiqueta="Proyecto destacado"
-            tituloLinea1="Sistema de pedidos y"
-            tituloLinea2="gestión de repartos"
-            descripcion="Sistema de pedidos y entregas inspirado en plataformas como Uber Eats y DiDi Food, con roles diferenciados para clientes, repartidores y administradores."
-            tipo="Proyecto académico"
-            periodo="Mayo 2022 – Abril 2023"
-            imagen={villalon}
-            logros={[
-                {
-                icono: 'lucide:users',
-                titulo: 'Roles diferenciados',
-                descripcion: 'Flujos separados para clientes, repartidores y administradores.',
-                },
-                {
-                icono: 'lucide:shopping-cart',
-                titulo: 'Productos y carritos',
-                descripcion: 'Gestión de productos, categorías, carritos y flujo de pedidos.',
-                },
-                {
-                icono: 'lucide:bike',
-                titulo: 'Asignación de repartidores',
-                descripcion: 'El administrador asigna cada pedido a un repartidor.',
-                },
-                {
-                icono: 'lucide:database',
-                titulo: 'Backend y base de datos',
-                descripcion: 'Conexión de la aplicación con el backend para gestionar las operaciones.',
-                },
-            ]}
-            tecnologias={[
-                { icono: 'logos:angular-icon', nombre: 'Angular' },
-                { icono: 'logos:nestjs', nombre: 'NestJS' },
-            ]}
-            invertido={true}
-        />
+            <ProyectoCard
+                etiqueta="Proyecto destacado"
+                tituloLinea1="Sistema de pedidos y"
+                tituloLinea2="gestión de repartos"
+                descripcion="Sistema de pedidos y entregas inspirado en plataformas como Uber Eats y DiDi Food, con roles diferenciados para clientes, repartidores y administradores."
+                tipo="Proyecto académico"
+                periodo="Mayo 2022 – Abril 2023"
+                imagen={villalon}
+                logros={[
+                    {
+                    icono: 'lucide:users',
+                    titulo: 'Roles diferenciados',
+                    descripcion: 'Flujos separados para clientes, repartidores y administradores.',
+                    },
+                    {
+                    icono: 'lucide:shopping-cart',
+                    titulo: 'Productos y carritos',
+                    descripcion: 'Gestión de productos, categorías, carritos y flujo de pedidos.',
+                    },
+                    {
+                    icono: 'lucide:bike',
+                    titulo: 'Asignación de repartidores',
+                    descripcion: 'El administrador asigna cada pedido a un repartidor.',
+                    },
+                    {
+                    icono: 'lucide:database',
+                    titulo: 'Backend y base de datos',
+                    descripcion: 'Conexión de la aplicación con el backend para gestionar las operaciones.',
+                    },
+                ]}
+                tecnologias={[
+                    { icono: 'logos:angular-icon', nombre: 'Angular' },
+                    { icono: 'logos:nestjs', nombre: 'NestJS' },
+                ]}
+            />
+            <ProyectoCard
+                etiqueta="Proyecto destacado"
+                tituloLinea1="Sistema de pedidos y"
+                tituloLinea2="gestión de repartos"
+                descripcion="Sistema de pedidos y entregas inspirado en plataformas como Uber Eats y DiDi Food, con roles diferenciados para clientes, repartidores y administradores."
+                tipo="Proyecto académico"
+                periodo="Mayo 2022 – Abril 2023"
+                imagen={villalon}
+                logros={[
+                    {
+                    icono: 'lucide:users',
+                    titulo: 'Roles diferenciados',
+                    descripcion: 'Flujos separados para clientes, repartidores y administradores.',
+                    },
+                    {
+                    icono: 'lucide:shopping-cart',
+                    titulo: 'Productos y carritos',
+                    descripcion: 'Gestión de productos, categorías, carritos y flujo de pedidos.',
+                    },
+                    {
+                    icono: 'lucide:bike',
+                    titulo: 'Asignación de repartidores',
+                    descripcion: 'El administrador asigna cada pedido a un repartidor.',
+                    },
+                    {
+                    icono: 'lucide:database',
+                    titulo: 'Backend y base de datos',
+                    descripcion: 'Conexión de la aplicación con el backend para gestionar las operaciones.',
+                    },
+                ]}
+                tecnologias={[
+                    { icono: 'logos:angular-icon', nombre: 'Angular' },
+                    { icono: 'logos:nestjs', nombre: 'NestJS' },
+                ]}
+                invertido={true}
+            />
+            <ProyectoCard
+                etiqueta="Proyecto destacado"
+                tituloLinea1="Sistema de pedidos y"
+                tituloLinea2="gestión de repartos"
+                descripcion="Sistema de pedidos y entregas inspirado en plataformas como Uber Eats y DiDi Food, con roles diferenciados para clientes, repartidores y administradores."
+                tipo="Proyecto académico"
+                periodo="Mayo 2022 – Abril 2023"
+                imagen={villalon}
+                logros={[
+                    {
+                    icono: 'lucide:users',
+                    titulo: 'Roles diferenciados',
+                    descripcion: 'Flujos separados para clientes, repartidores y administradores.',
+                    },
+                    {
+                    icono: 'lucide:shopping-cart',
+                    titulo: 'Productos y carritos',
+                    descripcion: 'Gestión de productos, categorías, carritos y flujo de pedidos.',
+                    },
+                    {
+                    icono: 'lucide:bike',
+                    titulo: 'Asignación de repartidores',
+                    descripcion: 'El administrador asigna cada pedido a un repartidor.',
+                    },
+                    {
+                    icono: 'lucide:database',
+                    titulo: 'Backend y base de datos',
+                    descripcion: 'Conexión de la aplicación con el backend para gestionar las operaciones.',
+                    },
+                ]}
+                tecnologias={[
+                    { icono: 'logos:angular-icon', nombre: 'Angular' },
+                    { icono: 'logos:nestjs', nombre: 'NestJS' },
+                ]}
+                invertido={true}
+            />
         </div>
     </div>
 </section>
 
 <style>
+    .proyect-bg-section {
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        object-fit: cover;
+        position: absolute;
+    }
+
     .section-experience  {
         width: 100%;
         height: auto;
@@ -142,7 +187,7 @@ import ProyectoCard from "./ProyectoCard.astro";
         font-size: 57px;
         font-weight: 700;
         /* color: #dce6ee; */
-        color: #000107
+        color: #eaebee;
         letter-spacing: -2.5;
         line-height: 1;
     }
@@ -191,32 +236,59 @@ import ProyectoCard from "./ProyectoCard.astro";
     .section-information-project {
         width: 100%;
         height: auto;
-        background: #fff;
+        background: #F0F2F4;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .section-project {
-        width: 90%;
+        width: 95%;
         height: auto;
         display: flex;
+        padding: 3.7rem 0;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        gap: 5px;
+        gap: 30px;
     }
 </style>
 
 <script>
-import type { boolean, hash } from "astro:schema";
 
+    interface ObjectImgPosition {
+        element: HTMLElement,
+        startX: number,
+        startY: number,
+        endX: number,
+        endY: number,
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
         const sectionSticky = document.querySelector('.section-title-sticky-height') as HTMLElement | null;
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        
+        const sectioImaSticky = document.querySelectorAll('.proyect-img');
+        const sectionImgProyect = document.querySelectorAll<HTMLElement>('.proy_main-img');
+
         const titleSticky = document.querySelector('.title-sticky') as HTMLElement | null;
         const supportIntersectionObserver = 'IntersectionObserver' in window;
+
+        const objectImgPosition: ObjectImgPosition[] = [];
+        console.log(sectionImgProyect);
+        sectioImaSticky.forEach( (ele, index) => {
+            const rect = sectionImgProyect[index].getBoundingClientRect();
+            const rectEle = ele.getBoundingClientRect();
+            objectImgPosition.push(
+                {
+                    element: ele as HTMLElement,
+                    startX: rectEle.left + window.scrollX,
+                    startY: rectEle.top + window.scrollY,
+                    endX: rect.left + window.scrollX,
+                    endY: rect.top + window.scrollY,
+                }
+            );
+        });
 
         if ( ! sectionSticky ) return;
         
@@ -232,8 +304,13 @@ import type { boolean, hash } from "astro:schema";
         let actual: null | number = null;
         let secondHow: null | number = null;
 
-        const clamp = (val: number, min: number, max: number) => {
+        const clamp = (val: number, min: number, max: number): number => {
             return Math.max( min, Math.min(val, max));
+        }
+
+        const lerp = ( start: number, end: number, actual: number | null ): number => {
+            if ( typeof actual !== 'number' ) return 0;
+            return ( start + ( end - start ) * actual );
         }
 
         const updateAnimation = (): boolean => {
@@ -266,10 +343,9 @@ import type { boolean, hash } from "astro:schema";
                 secondHow = progressSecond
             }
             
-            if ( actual === null || secondHow === null ) return false;
+            if ( actual === null ) return false;
            
             // Animaciones de imaen
-            const sectioImaSticky = document.querySelectorAll('.proyect-img');
             sectioImaSticky.forEach(element => {
                 if ( actual ) {
                     (element as HTMLElement).style.setProperty( '--scaleVal', actual.toString() );
@@ -284,8 +360,17 @@ import type { boolean, hash } from "astro:schema";
 
             titleSticky.style.setProperty( '--translateY', translateY.toString() );
 
+            //Animacion mover Imagenes
+                objectImgPosition.forEach( (item) => {
+                const x = lerp( item.startX, item.endX, secondHow) - item.startX;
+                const y = lerp( item.startY, item.endY, secondHow) - item.startY;
 
-            //Animacion desaparecen Imagenes
+                item.element.style.transform = `translate(${x}px, ${y}px) scale(${actual}) `;
+
+                console.log("Eto que es?", x, y);
+            });
+        
+
             console.log(progress, actual, '----', progressSecond, secondHow );
             
             return actual !== progress || secondHow !== progressSecond ;
@@ -325,10 +410,10 @@ import type { boolean, hash } from "astro:schema";
 
         const initSectionAnimation = () => {
             const sectioImaSticky = document.querySelectorAll('.proyect-img');
-
+            
             if ( !sectionSticky || !titleSticky || sectioImaSticky.length === 0 ) return;
 
-            sectionSticky.style.setProperty( "--height-content",  '1200px' );
+            sectionSticky.style.setProperty( "--height-content",  '1400px' );
             titleSticky.style.setProperty( '--translateY', '200px' );
             titleSticky.style.setProperty( '--opacidad', '0' );
 
