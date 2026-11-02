@@ -25,14 +25,14 @@ interface Props {
   periodo?: string;
   resumen?: string; // frase corta para la franja morada
   imagen: ImageMetadata | string; // imagen grande
-  imagenSecundaria?: ImageMetadata | string; // imagen pequeña de abajo a la derecha
+  imagenSecundaria?: ImageMetadata | string; // imagen pequeña junto a la lista
   imagenMini?: ImageMetadata | string; // miniatura dentro de la franja
   imagenAlt?: string;
   logros: Logro[];
   tecnologias?: Tecnologia[];
   enlace?: string;
   textoEnlace?: string;
-  invertido?: boolean; // true = collage a la derecha
+  invertido?: boolean; // true = imagen a la derecha, info a la izquierda
 }
 
 const {
@@ -185,7 +185,7 @@ const secundaria = imagenSecundaria ?? imagen;
     max-width: 100%;
     height: 560px;
     margin-inline: auto;
-    padding: 2rem;
+    padding: 2rem 0.5rem;
     color: var(--texto);
   }
 
@@ -244,36 +244,37 @@ const secundaria = imagenSecundaria ?? imagen;
   }
 
   /* Franja morada */
-.proy__banner {
-  position: absolute;
-  left: 1%;
-  top: 65%;
-  height: 80px;
-  width: 120%;
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  padding: 0.7rem 1.2rem 0.7rem 0.8rem;
-  color: #fff;
+  .proy__banner {
+    position: absolute;
+    left: 1%;
+    top: 65%;
+    height: 80px;
+    width: 120%;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.7rem 1.2rem 0.7rem 0.8rem;
+    color: #fff;
 
-  /* degradado con transparencia */
-  background: linear-gradient(
-    90deg,
-    rgb(163, 29, 240) 0%,
-    rgba(228, 67, 121, 0.789) 60%,
-    rgb(255, 121, 26) 100%
-  );
+    /* degradado con transparencia */
+    background: linear-gradient(
+      90deg,
+      rgb(163, 29, 240) 0%,
+      rgba(228, 67, 121, 0.789) 60%,
+      rgb(255, 121, 26) 100%
+    );
 
-  /* el efecto de vidrio */
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    /* el efecto de vidrio */
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
 
-  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
 
-  /* borde de luz interior (el border normal se cortaría con el clip-path) */
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45),
-              inset 0 0 0 1px rgba(255, 255, 255, 0.18);
-}
+    /* borde de luz interior (el border normal se cortaría con el clip-path) */
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+  }
 
   .proy__thumb {
     flex: 0 0 78px;
@@ -306,8 +307,8 @@ const secundaria = imagenSecundaria ?? imagen;
   /* ================= INFO ================= */
   .proy-content__second {
     width: 100%;
-    height: 340px;
-    gap: 16px;
+    height: 320px;
+    gap: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -318,7 +319,7 @@ const secundaria = imagenSecundaria ?? imagen;
     position: relative;
     right: 0;
     bottom: 0;
-    width: 50%;
+    width: 55%;
     height: 100%;
     clip-path: polygon(
       24px 0,
@@ -335,7 +336,7 @@ const secundaria = imagenSecundaria ?? imagen;
   }
 
   .proy__info {
-    width: 50%;
+    width: 60%;
     height: 560px;
     display: flex;
     flex-direction: column;
@@ -354,6 +355,7 @@ const secundaria = imagenSecundaria ?? imagen;
     min-width: 0;
   }
 
+  /* ----- A partir de aquí tu archivo llegó cortado: está reconstruido ----- */
   .proy__eyebrow {
     display: flex;
     flex-wrap: wrap;
@@ -395,35 +397,34 @@ const secundaria = imagenSecundaria ?? imagen;
 
   .proy__title {
     margin: 0;
-    max-width: 20ch;
-    font-size: clamp(1.9rem, 3.4vw, 2.7rem);
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.035em;
+    max-width: 22ch;
+    font-size: clamp(2.5rem, 3.4vw, 3.3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.085em;
   }
 
   .proy__desc {
     margin: 0;
-    font-size: 0.97rem;
-    line-height: 1.1;
-    color: #303136;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--suave);
   }
 
-  /* Lista con destellos */
   .proy__list-content {
-    width: 55%;
+    width: 45%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: start;
     justify-content: center;
-    gap: 25px;
+    align-items: flex-start;
+    gap: 1rem;
+    min-width: 0;
   }
 
   .proy__list {
-    width: 100%;
     list-style: none;
-    margin: 0.4rem 0 0;
+    margin: 0;
     padding: 0;
     display: grid;
     gap: 0.8rem;
@@ -438,9 +439,9 @@ const secundaria = imagenSecundaria ?? imagen;
   }
 
   .proy__list :global(.proy__list-icon) {
-    flex: 0 0 22px;
-    width: 22px;
-    height: 22px;
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
     margin-top: 0.15rem;
     color: var(--morado);
   }
@@ -453,14 +454,13 @@ const secundaria = imagenSecundaria ?? imagen;
   .proy__list span {
     display: block;
     margin-top: 0.15rem;
-    font-size: 0.85rem;
-    color: #303136;
+    font-size: 0.8rem;
+    color: var(--suave);
   }
 
-  /* Tecnologías */
   .proy__tech {
     list-style: none;
-    margin: 0.2rem 0 0;
+    margin: 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
@@ -484,12 +484,10 @@ const secundaria = imagenSecundaria ?? imagen;
     height: 18px;
   }
 
-  /* Botón con esquina cortada */
   .proy__btn {
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    margin-top: 0.6rem;
     padding: 0.85rem 1.6rem 0.85rem 1.4rem;
     font-size: 0.82rem;
     font-weight: 700;
@@ -519,32 +517,196 @@ const secundaria = imagenSecundaria ?? imagen;
     height: 16px;
   }
 
+  /* ================= INVERTIDO =================
+     Imagen a la derecha, info a la izquierda. Todo lo que iba
+     de izquierda a derecha (cortes, rayas, banner, imagen
+     secundaria y degradado) va ahora de derecha a izquierda. */
+  .proy--invertido {
+    flex-direction: row-reverse;
+  }
+
+  /* imagen grande: corte y rayas abajo a la izquierda */
+  .proy--invertido .proy__main {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 100%,
+      70px 100%,
+      0 calc(100% - 70px)
+    );
+  }
+
+  .proy--invertido .proy__main::after {
+    right: auto;
+    left: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent 0 16px,
+      rgba(255, 255, 255, 0.92) 16px 30px
+    );
+  }
+
+  /* franja: nace en el borde derecho de la imagen y avanza hacia la izquierda */
+  .proy--invertido .proy__banner {
+    left: auto;
+    right: 1%;
+    flex-direction: row-reverse;
+    padding: 0.7rem 0.8rem 0.7rem 1.2rem;
+    background: linear-gradient(
+      270deg,
+      rgb(163, 29, 240) 0%,
+      rgba(228, 67, 121, 0.789) 60%,
+      rgb(255, 121, 26) 100%
+    );
+    clip-path: polygon(22px 0, 100% 0, 100% 100%, 0 100%, 0 22px);
+  }
+
+  .proy--invertido .proy__banner-text {
+    text-align: right;
+  }
+
+  .proy--invertido .proy__thumb {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% calc(100% - 16px),
+      calc(100% - 16px) 100%,
+      0 100%
+    );
+  }
+
+  /* fila inferior: lista a la izquierda, imagen secundaria junto a la grande */
+  .proy--invertido .proy-content__second {
+    flex-direction: row-reverse;
+  }
+
+  .proy--invertido .proy__second {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 24px) 0,
+      100% 24px,
+      100% 100%,
+      24px 100%,
+      0 calc(100% - 24px)
+    );
+  }
+
+  .proy--invertido .proy__second-img {
+    transform: translateX(25px);
+  }
+
   /* ================= RESPONSIVE ================= */
-  @media (max-width: 900px) {
-    .proy {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
+
+  /* Tablet y móvil: todo en una columna */
+  @media (max-width: 1000px) {
+    .proy,
+    .proy.proy--invertido {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 2rem;
+      height: auto;
       padding: 1.25rem;
     }
 
-    .proy--invertido .proy__visual {
-      order: 0;
+    .proy__visual {
+      width: 100%;
+      height: 400px;
+      aspect-ratio: auto;
+      margin-inline: 0;
+    }
+
+    /* la franja ya no sale del collage: queda sobre la parte baja de la imagen */
+    .proy__banner {
+      left: 4%;
+      right: auto;
+      top: auto;
+      bottom: 1.25rem;
+      width: 92%;
+      height: auto;
+      min-height: 80px;
+      box-sizing: border-box;
+    }
+
+    .proy--invertido .proy__banner {
+      left: auto;
+      right: 4%;
+    }
+
+    .proy__info {
+      width: 100%;
+      height: auto;
+      gap: 1.5rem;
+    }
+
+    .proy-content__info {
+      height: auto;
+    }
+
+    .proy-content__second,
+    .proy--invertido .proy-content__second {
+      flex-direction: column;
+      align-items: stretch;
+      height: auto;
+      gap: 1.5rem;
+    }
+
+    .proy__second {
+      width: 100%;
+      height: 240px;
+    }
+
+    .proy__second-img,
+    .proy--invertido .proy__second-img {
+      transform: none;
+    }
+
+    .proy__list-content {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .proy {
+      padding: 1rem;
+    }
+
+    .proy__visual {
+      height: 320px;
+    }
+
+    .proy__banner {
+      left: 3%;
+      width: 94%;
+      gap: 0.7rem;
+      padding: 0.6rem 0.9rem 0.6rem 0.6rem;
+    }
+
+    .proy--invertido .proy__banner {
+      right: 3%;
+      padding: 0.6rem 0.6rem 0.6rem 0.9rem;
+    }
+
+    .proy__thumb {
+      flex-basis: 56px;
+      width: 56px;
+      height: 56px;
+    }
+
+    .proy__banner-meta {
+      font-size: 0.7rem;
+    }
+
+    .proy__banner-quote {
+      font-size: 0.78rem;
+    }
+
+    .proy__second {
+      height: 200px;
     }
 
     .proy__title {
       max-width: none;
-    }
-  }
-
-  @media (max-width: 520px) {
-    .proy__banner-quote {
-      font-size: 0.7rem;
-    }
-
-    .proy__thumb {
-      flex-basis: 52px;
-      width: 52px;
-      height: 52px;
     }
   }
 </style>

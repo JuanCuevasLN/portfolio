@@ -1,22 +1,44 @@
 ---
 import { Image } from "astro:assets";
 
-import Gastro from '../assets/glitched-robot-face-portrait.webp';
-import villalon from '../assets/villalon.png';
-import finanza from '../assets/finanzas.png';
+import Gastro from "../assets/glitched-robot-face-portrait.webp";
+import finanza from "../assets/finanzas.png";
 import ProyectoCard from "./ProyectoCard.astro";
-import bg from '../assets/step-bg.webp'
+import bg from "../assets/step-bg.webp";
+
+//Proyecto número uno - mandadito
+import mandadito from "../assets/mandadito.jpeg";
+import mandaditoPort from "../assets/mandadito_2.jpeg";
+
+//Proyecto número dos - gastronomia
+import gastronomia from "../assets/gastronomia.png";
 ---
 
 <section class="section-experience">
     <div class="section-title-sticky-height">
         <div class="section-title-and-img-sticky">
-             <Image src={bg} alt="Descripción de la imagen" class='proyect-bg-section one' />
+            <Image
+                src={bg}
+                alt="Descripción de la imagen"
+                class="proyect-bg-section one"
+            />
             <h2 class="title-sticky">Proyectos destacados</h2>
             <div class="sectio-ima-sticky">
-                <Image src={Gastro} alt="Descripción de la imagen" class='proyect-img one' />
-                <Image src={villalon} alt="Descripción de la imagen" class='proyect-img two' />
-                <Image src={finanza} alt="Descripción de la imagen" class='proyect-img three' />
+                <Image
+                    src={mandadito}
+                    alt="Descripción de la imagen"
+                    class="proyect-img two"
+                />
+                <Image
+                    src={gastronomia}
+                    alt="Descripción de la imagen"
+                    class="proyect-img one"
+                />
+                <Image
+                    src={finanza}
+                    alt="Descripción de la imagen"
+                    class="proyect-img three"
+                />
             </div>
         </div>
     </div>
@@ -24,72 +46,87 @@ import bg from '../assets/step-bg.webp'
         <div class="section-project">
             <ProyectoCard
                 etiqueta="Proyecto destacado"
-                tituloLinea1="Sistema de pedidos y"
-                tituloLinea2="gestión de repartos"
-                descripcion="Sistema de pedidos y entregas inspirado en plataformas como Uber Eats y DiDi Food, con roles diferenciados para clientes, repartidores y administradores."
+                tituloLinea1="Sistema de gestión de"
+                tituloLinea2="inventario y utensilios"
+                descripcion="Sistema desarrollado para la Facultad de Gastronomía de la Universidad UTCGG, enfocado en gestionar el inventario y almacenamiento de utensilios de cocina, así como controlar su préstamo a los alumnos."
                 tipo="Proyecto académico"
-                periodo="Mayo 2022 – Abril 2023"
-                imagen={villalon}
+                periodo="Enero 2024 – Diciembre 2024"
+                imagen={gastronomia}
                 logros={[
                     {
-                    icono: 'lucide:users',
-                    titulo: 'Roles diferenciados',
-                    descripcion: 'Flujos separados para clientes, repartidores y administradores.',
+                        icono: "lucide:package",
+                        titulo: "Gestión de inventario",
+                        descripcion:
+                            "Registro y administración de utensilios de cocina y control de productos disponibles.",
                     },
                     {
-                    icono: 'lucide:shopping-cart',
-                    titulo: 'Productos y carritos',
-                    descripcion: 'Gestión de productos, categorías, carritos y flujo de pedidos.',
+                        icono: "lucide:clipboard-list",
+                        titulo: "Solicitudes de préstamo",
+                        descripcion:
+                            "Registro y seguimiento de solicitudes de utensilios realizadas por los alumnos.",
                     },
                     {
-                    icono: 'lucide:bike',
-                    titulo: 'Asignación de repartidores',
-                    descripcion: 'El administrador asigna cada pedido a un repartidor.',
+                        icono: "lucide:users",
+                        titulo: "Control de entregas",
+                        descripcion:
+                            "Administración de entregas y seguimiento de los utensilios asignados a cada alumno.",
                     },
                     {
-                    icono: 'lucide:database',
-                    titulo: 'Backend y base de datos',
-                    descripcion: 'Conexión de la aplicación con el backend para gestionar las operaciones.',
+                        icono: "lucide:refresh-cw",
+                        titulo: "Actualización dinámica",
+                        descripcion:
+                            "Implementación de AJAX para actualizar información y ejecutar operaciones sin recargar las páginas.",
                     },
                 ]}
                 tecnologias={[
-                    { icono: 'logos:angular-icon', nombre: 'Angular' },
-                    { icono: 'logos:nestjs', nombre: 'NestJS' },
+                    { icono: "logos:php", nombre: "PHP" },
+                    { icono: "logos:mysql", nombre: "MySQL" },
+                    { icono: "logos:javascript", nombre: "JavaScript" },
                 ]}
+                invertido={false}
             />
             <ProyectoCard
                 etiqueta="Proyecto destacado"
                 tituloLinea1="Sistema de pedidos y"
                 tituloLinea2="gestión de repartos"
-                descripcion="Sistema de pedidos y entregas inspirado en plataformas como Uber Eats y DiDi Food, con roles diferenciados para clientes, repartidores y administradores."
+                descripcion="Sistema de pedidos y entregas inspirado en plataformas como Uber Eats y DiDi Food, con roles diferenciados para clientes, repartidores y administradores. Este proyecto fue un proyecto escolar por un encaro de la empresa mandadito express"
                 tipo="Proyecto académico"
                 periodo="Mayo 2022 – Abril 2023"
-                imagen={villalon}
+                imagen={mandaditoPort}
+                imagenSecundaria={mandadito}
+                imagenMini={mandadito}
                 logros={[
                     {
-                    icono: 'lucide:users',
-                    titulo: 'Roles diferenciados',
-                    descripcion: 'Flujos separados para clientes, repartidores y administradores.',
+                        icono: "lucide:users",
+                        titulo: "Roles diferenciados",
+                        descripcion:
+                            "Flujos separados para clientes, repartidores y administradores.",
                     },
                     {
-                    icono: 'lucide:shopping-cart',
-                    titulo: 'Productos y carritos',
-                    descripcion: 'Gestión de productos, categorías, carritos y flujo de pedidos.',
+                        icono: "lucide:shopping-cart",
+                        titulo: "Productos y carritos",
+                        descripcion:
+                            "Gestión de productos, categorías, carritos y flujo de pedidos.",
                     },
                     {
-                    icono: 'lucide:bike',
-                    titulo: 'Asignación de repartidores',
-                    descripcion: 'El administrador asigna cada pedido a un repartidor.',
+                        icono: "lucide:bike",
+                        titulo: "Asignación de repartidores",
+                        descripcion:
+                            "El administrador asigna cada pedido a un repartidor.",
                     },
                     {
-                    icono: 'lucide:database',
-                    titulo: 'Backend y base de datos',
-                    descripcion: 'Conexión de la aplicación con el backend para gestionar las operaciones.',
+                        icono: "lucide:database",
+                        titulo: "Backend y base de datos",
+                        descripcion:
+                            "Conexión de la aplicación con el backend para gestionar las operaciones.",
                     },
                 ]}
                 tecnologias={[
-                    { icono: 'logos:angular-icon', nombre: 'Angular' },
-                    { icono: 'logos:nestjs', nombre: 'NestJS' },
+                    { icono: "logos:php", nombre: "PHP" },
+                    { icono: "logos:mysql-icon", nombre: "MySQL" },
+                    { icono: "logos:html-5", nombre: "HTML" },
+                    { icono: "logos:javascript", nombre: "JavaScript" },
+                    { icono: "lucide:arrow-left-right", nombre: "AJAX" },
                 ]}
                 invertido={true}
             />
@@ -100,34 +137,38 @@ import bg from '../assets/step-bg.webp'
                 descripcion="Sistema de pedidos y entregas inspirado en plataformas como Uber Eats y DiDi Food, con roles diferenciados para clientes, repartidores y administradores."
                 tipo="Proyecto académico"
                 periodo="Mayo 2022 – Abril 2023"
-                imagen={villalon}
+                imagen={gastronomia}
                 logros={[
                     {
-                    icono: 'lucide:users',
-                    titulo: 'Roles diferenciados',
-                    descripcion: 'Flujos separados para clientes, repartidores y administradores.',
+                        icono: "lucide:users",
+                        titulo: "Roles diferenciados",
+                        descripcion:
+                            "Flujos separados para clientes, repartidores y administradores.",
                     },
                     {
-                    icono: 'lucide:shopping-cart',
-                    titulo: 'Productos y carritos',
-                    descripcion: 'Gestión de productos, categorías, carritos y flujo de pedidos.',
+                        icono: "lucide:shopping-cart",
+                        titulo: "Productos y carritos",
+                        descripcion:
+                            "Gestión de productos, categorías, carritos y flujo de pedidos.",
                     },
                     {
-                    icono: 'lucide:bike',
-                    titulo: 'Asignación de repartidores',
-                    descripcion: 'El administrador asigna cada pedido a un repartidor.',
+                        icono: "lucide:bike",
+                        titulo: "Asignación de repartidores",
+                        descripcion:
+                            "El administrador asigna cada pedido a un repartidor.",
                     },
                     {
-                    icono: 'lucide:database',
-                    titulo: 'Backend y base de datos',
-                    descripcion: 'Conexión de la aplicación con el backend para gestionar las operaciones.',
+                        icono: "lucide:database",
+                        titulo: "Backend y base de datos",
+                        descripcion:
+                            "Conexión de la aplicación con el backend para gestionar las operaciones.",
                     },
                 ]}
                 tecnologias={[
-                    { icono: 'logos:angular-icon', nombre: 'Angular' },
-                    { icono: 'logos:nestjs', nombre: 'NestJS' },
+                    { icono: "logos:angular-icon", nombre: "Angular" },
+                    { icono: "logos:nestjs", nombre: "NestJS" },
                 ]}
-                invertido={true}
+                invertido={false}
             />
         </div>
     </div>
@@ -142,12 +183,12 @@ import bg from '../assets/step-bg.webp'
         position: absolute;
     }
 
-    .section-experience  {
+    .section-experience {
         width: 100%;
         height: auto;
         background: #000107;
         background: #fff;
-        background: #F0F2F4;
+        background: #f0f2f4;
         position: relative;
         z-index: 2000;
     }
@@ -155,7 +196,7 @@ import bg from '../assets/step-bg.webp'
     .section-title-sticky-height {
         --height-content: auto;
         width: 100%;
-        
+
         height: var(--height-content);
         display: flex;
         align-items: start;
@@ -172,14 +213,24 @@ import bg from '../assets/step-bg.webp'
         position: sticky;
         top: 0;
 
-        background: linear-gradient(115deg, transparent 0 18%, rgb(#000107) 18.1% 18.45%, transparent 18.7% 100%), linear-gradient(145deg, rgba(122, 92, 255, 0.2), transparent 34%), linear-gradient(315deg, rgba(255, 23, 79, 0.14), transparent 36%), linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 36%), #080912;
+        background:
+            linear-gradient(
+                115deg,
+                transparent 0 18%,
+                rgb(#000107) 18.1% 18.45%,
+                transparent 18.7% 100%
+            ),
+            linear-gradient(145deg, rgba(122, 92, 255, 0.2), transparent 34%),
+            linear-gradient(315deg, rgba(255, 23, 79, 0.14), transparent 36%),
+            linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 36%),
+            #080912;
     }
 
     .title-sticky {
         --translateY: 0;
         --opacidad: 1;
 
-        transform: translateY( var(--translateY) );
+        transform: translateY(var(--translateY));
         opacity: var(--opacidad);
 
         z-index: 10;
@@ -202,9 +253,9 @@ import bg from '../assets/step-bg.webp'
         justify-content: center;
     }
 
-    .proyect-img  {
+    .proyect-img {
         --scaleVal: 1;
-        transform: scale( var(--scaleVal));
+        transform: scale(var(--scaleVal));
         position: absolute;
         object-fit: cover;
         border-radius: 3px;
@@ -236,7 +287,7 @@ import bg from '../assets/step-bg.webp'
     .section-information-project {
         width: 100%;
         height: auto;
-        background: #F0F2F4;
+        background: #f0f2f4;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -246,52 +297,56 @@ import bg from '../assets/step-bg.webp'
         width: 95%;
         height: auto;
         display: flex;
-        padding: 3.7rem 0;
+        padding: 5.7rem 0;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        gap: 30px;
+        gap: 40px;
     }
 </style>
 
 <script>
-
     interface ObjectImgPosition {
-        element: HTMLElement,
-        startX: number,
-        startY: number,
-        endX: number,
-        endY: number,
+        element: HTMLElement;
+        startX: number;
+        startY: number;
+        endX: number;
+        endY: number;
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const sectionSticky = document.querySelector('.section-title-sticky-height') as HTMLElement | null;
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        
-        const sectioImaSticky = document.querySelectorAll('.proyect-img');
-        const sectionImgProyect = document.querySelectorAll<HTMLElement>('.proy_main-img');
+    document.addEventListener("DOMContentLoaded", () => {
+        const sectionSticky = document.querySelector(
+            ".section-title-sticky-height",
+        ) as HTMLElement | null;
+        const reduceMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+        ).matches;
 
-        const titleSticky = document.querySelector('.title-sticky') as HTMLElement | null;
-        const supportIntersectionObserver = 'IntersectionObserver' in window;
+        const sectioImaSticky = document.querySelectorAll(".proyect-img");
+        const sectionImgProyect =
+            document.querySelectorAll<HTMLElement>(".proy_main-img");
+
+        const titleSticky = document.querySelector(
+            ".title-sticky",
+        ) as HTMLElement | null;
+        const supportIntersectionObserver = "IntersectionObserver" in window;
 
         const objectImgPosition: ObjectImgPosition[] = [];
-        console.log(sectionImgProyect);
-        sectioImaSticky.forEach( (ele, index) => {
+
+        sectioImaSticky.forEach((ele, index) => {
             const rect = sectionImgProyect[index].getBoundingClientRect();
             const rectEle = ele.getBoundingClientRect();
-            objectImgPosition.push(
-                {
-                    element: ele as HTMLElement,
-                    startX: rectEle.left + window.scrollX,
-                    startY: rectEle.top + window.scrollY,
-                    endX: rect.left + window.scrollX,
-                    endY: rect.top + window.scrollY,
-                }
-            );
+            objectImgPosition.push({
+                element: ele as HTMLElement,
+                startX: rectEle.left + window.scrollX,
+                startY: rectEle.top + window.scrollY,
+                endX: rect.left + window.scrollX,
+                endY: rect.top + window.scrollY,
+            });
         });
 
-        if ( ! sectionSticky ) return;
-        
+        if (!sectionSticky) return;
+
         let ticking: boolean = false;
         let start: number = 0;
         let end: number = 0;
@@ -305,122 +360,131 @@ import bg from '../assets/step-bg.webp'
         let secondHow: null | number = null;
 
         const clamp = (val: number, min: number, max: number): number => {
-            return Math.max( min, Math.min(val, max));
-        }
+            return Math.max(min, Math.min(val, max));
+        };
 
-        const lerp = ( start: number, end: number, actual: number | null ): number => {
-            if ( typeof actual !== 'number' ) return 0;
-            return ( start + ( end - start ) * actual );
-        }
+        const lerp = (
+            start: number,
+            end: number,
+            actual: number | null,
+        ): number => {
+            if (typeof actual !== "number") return 0;
+            return start + (end - start) * actual;
+        };
 
         const updateAnimation = (): boolean => {
             const rect = sectionSticky.getBoundingClientRect();
-            if ( ! rect ) return false;
+            if (!rect) return false;
 
-            const rawProgress = ( start - rect.top) / (start - end);
+            const rawProgress = (start - rect.top) / (start - end);
             const progress = clamp(rawProgress, 0, 1);
 
-            if ( actual === null ) {
+            if (actual === null) {
                 actual = progress;
             } else {
-                actual += ( progress - actual ) * SMOOTH;
+                actual += (progress - actual) * SMOOTH;
             }
 
-            if ( Math.abs( progress - actual) < SMOOTH_EPSILON ) {
-                actual = progress
+            if (Math.abs(progress - actual) < SMOOTH_EPSILON) {
+                actual = progress;
             }
 
-            const rawProgressSecond = ( secondStart - rect.top ) / ( secondStart - secondEnd );
-            const progressSecond = clamp( rawProgressSecond, 0, 1);
+            const rawProgressSecond =
+                (secondStart - rect.top) / (secondStart - secondEnd);
+            const progressSecond = clamp(rawProgressSecond, 0, 1);
 
-            if ( secondHow === null ) {
+            if (secondHow === null) {
                 secondHow = progressSecond;
             } else {
-                secondHow += ( progressSecond - secondHow ) * SMOOTH;
+                secondHow += (progressSecond - secondHow) * SMOOTH;
             }
 
-            if ( Math.abs( progressSecond - secondHow) < SMOOTH_EPSILON ) {
-                secondHow = progressSecond
+            if (Math.abs(progressSecond - secondHow) < SMOOTH_EPSILON) {
+                secondHow = progressSecond;
             }
-            
-            if ( actual === null ) return false;
-           
-            // Animaciones de imaen
-            sectioImaSticky.forEach(element => {
-                if ( actual ) {
-                    (element as HTMLElement).style.setProperty( '--scaleVal', actual.toString() );
+
+            if (actual === null) return false;
+
+            sectioImaSticky.forEach((element) => {
+                if (actual) {
+                    (element as HTMLElement).style.setProperty(
+                        "--scaleVal",
+                        actual.toString(),
+                    );
                 }
             });
 
-            //Animaciones texto
-            if ( ! titleSticky ) return false;
-            titleSticky.style.setProperty( '--opacidad', actual.toString() );
+            if (!titleSticky) return false;
+            titleSticky.style.setProperty("--opacidad", actual.toString());
 
-            const translateY = 200 + (0 - 200) * actual;     
+            const translateY = 200 + (0 - 200) * actual;
 
-            titleSticky.style.setProperty( '--translateY', translateY.toString() );
+            titleSticky.style.setProperty(
+                "--translateY",
+                translateY.toString(),
+            );
 
-            //Animacion mover Imagenes
-                objectImgPosition.forEach( (item) => {
-                const x = lerp( item.startX, item.endX, secondHow) - item.startX;
-                const y = lerp( item.startY, item.endY, secondHow) - item.startY;
+            objectImgPosition.forEach((item) => {
+                const x = lerp(item.startX, item.endX, secondHow) - item.startX;
+                const y = lerp(item.startY, item.endY, secondHow) - item.startY;
 
+                const opacityVal = lerp(1, 0, secondHow);
                 item.element.style.transform = `translate(${x}px, ${y}px) scale(${actual}) `;
 
-                console.log("Eto que es?", x, y);
+                item.element.style.opacity = opacityVal.toString();
             });
-        
 
-            console.log(progress, actual, '----', progressSecond, secondHow );
-            
-            return actual !== progress || secondHow !== progressSecond ;
-        }
+            return actual !== progress || secondHow !== progressSecond;
+        };
 
         const tick = () => {
             if (updateAnimation()) {
-                requestAnimationFrame(tick)
+                requestAnimationFrame(tick);
             } else {
                 ticking = false;
             }
-        } 
+        };
 
         const requestUpdate = () => {
-            if ( ticking ) return;
-           
-            ticking = true;
-            requestAnimationFrame( tick ) 
-        }
+            if (ticking) return;
 
-        const observer = supportIntersectionObserver ? 
-            new IntersectionObserver( (entries) => {
-                entries.forEach( (entry) => {
-                    if ( entry.isIntersecting ) {
-                        window.addEventListener( 'scroll', requestUpdate, { passive: true} );
-                    } else {
-                        window.removeEventListener( 'scroll', requestUpdate );
-                    }
-                });
-            })
-        : null;
+            ticking = true;
+            requestAnimationFrame(tick);
+        };
+
+        const observer = supportIntersectionObserver
+            ? new IntersectionObserver((entries) => {
+                  entries.forEach((entry) => {
+                      if (entry.isIntersecting) {
+                          window.addEventListener("scroll", requestUpdate, {
+                              passive: true,
+                          });
+                      } else {
+                          window.removeEventListener("scroll", requestUpdate);
+                      }
+                  });
+              })
+            : null;
 
         const animation = () => {
-            if ( !observer ) return;
+            if (!observer) return;
             observer.observe(sectionSticky);
-        }
+        };
 
         const initSectionAnimation = () => {
-            const sectioImaSticky = document.querySelectorAll('.proyect-img');
-            
-            if ( !sectionSticky || !titleSticky || sectioImaSticky.length === 0 ) return;
+            const sectioImaSticky = document.querySelectorAll(".proyect-img");
 
-            sectionSticky.style.setProperty( "--height-content",  '1400px' );
-            titleSticky.style.setProperty( '--translateY', '200px' );
-            titleSticky.style.setProperty( '--opacidad', '0' );
+            if (!sectionSticky || !titleSticky || sectioImaSticky.length === 0)
+                return;
 
-            sectioImaSticky.forEach(ima => {
-                (ima as HTMLElement).style.setProperty( '--scaleVal', '0');
+            sectionSticky.style.setProperty("--height-content", "1400px");
+            titleSticky.style.setProperty("--translateY", "200px");
+            titleSticky.style.setProperty("--opacidad", "0");
+
+            sectioImaSticky.forEach((ima) => {
+                (ima as HTMLElement).style.setProperty("--scaleVal", "0");
             });
-            
+
             const rect = sectionSticky.getBoundingClientRect();
             const vh = window.innerHeight;
 
@@ -429,9 +493,9 @@ import bg from '../assets/step-bg.webp'
 
             secondStart = -100;
             secondEnd = vh - rect.height;
-        }
+        };
 
-        if ( !reduceMotion ) {
+        if (!reduceMotion) {
             initSectionAnimation();
             animation();
         }

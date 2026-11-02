@@ -1,0 +1,575 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import bg from "../assets/step-bg.png";
+---
+
+<section class="section-contact">
+    <div class="content-contact">
+        <Image
+            src={bg}
+            alt="Descripción de la imagen"
+            class="contact-bg-section"
+        />
+
+        <div class="contacto__grid">
+            <!-- ============ INFO ============ -->
+            <div class="contacto__info">
+                <div class="contacto__eyebrow">
+                    <i></i>
+                    <span>[ 01 ]</span>
+                </div>
+
+                <h2 class="contacto__title">
+                    Contáctame
+                </h2>
+
+                <ul class="contacto__list">
+                    <li class="contacto__item">
+                        <span class="contacto__icon"
+                            ><Icon name="lucide:phone" /></span
+                        >
+                        <div>
+                            <h3>Llámame o escríbeme</h3>
+                            <i class="contacto__rule"></i>
+                            <a href="tel:+527581092916">+52 758 109 2916</a>
+                        </div>
+                    </li>
+
+                    <li class="contacto__item">
+                        <span class="contacto__icon"
+                            ><Icon name="lucide:mail" /></span
+                        >
+                        <div>
+                            <h3>Escríbeme un correo</h3>
+                            <i class="contacto__rule"></i>
+                            <a href="mailto:tu@correo.com">tu@correo.com</a>
+                        </div>
+                    </li>
+
+                    <li class="contacto__item">
+                        <span class="contacto__icon"
+                            ><Icon name="lucide:map-pin" /></span
+                        >
+                        <div>
+                            <h3>Dónde estoy</h3>
+                            <i class="contacto__rule"></i>
+                            <p>Ciudad de México, Mx</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- ============ FORMULARIO ============ -->
+            <!-- Cambia action por el endpoint donde recibirás los mensajes (Formspree, Web3Forms...) -->
+            <form class="contacto__form" method="POST" action="" novalidate>
+                <h3 class="contacto__form-title">Envíame un mensaje</h3>
+
+                <div class="contacto__row">
+                    <label class="contacto__field">
+                        <span>Nombre</span>
+                        <input
+                            type="text"
+                            name="nombre"
+                            autocomplete="name"
+                            placeholder="Tu nombre"
+                            required
+                        />
+                    </label>
+
+                    <label class="contacto__field">
+                        <span>Correo</span>
+                        <input
+                            type="email"
+                            name="correo"
+                            autocomplete="email"
+                            placeholder="tu@correo.com"
+                            required
+                        />
+                    </label>
+                </div>
+
+                <label class="contacto__field text-area">
+                    <span>Mensaje</span>
+                    <textarea
+                        name="mensaje"
+                        rows="5"
+                        placeholder="Cuéntame sobre la vacante o el equipo…"
+                        required></textarea>
+                </label>
+
+                <button type="submit" class="contacto__btn">
+                    Enviar mensaje
+                    <Icon name="lucide:arrow-up-right" />
+                </button>
+
+                <p class="contacto__status" role="status" aria-live="polite">
+                </p>
+            </form>
+        </div>
+
+        <!-- ============ PIE ============ -->
+        <footer class="contacto__foot">
+            <span class="contacto__badge"><Icon name="lucide:asterisk" /></span>
+            <i class="contacto__vline"></i>
+            <ul>
+                <li>Juan de la Cruz Cuevas</li>
+                <li>Programador Full Stack</li>
+                <li>Ciudad de México, Mx</li>
+            </ul>
+        </footer>
+    </div>
+</section>
+
+<style>
+    .section-contact {
+        width: 100%;
+        height: 670px;
+        display: flex;
+        --morado: #9b30ff;
+        --naranja: #ff7a1a;
+        --texto: #e9e6f7;
+        --suave: #a9a5c2;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content-contact {
+        width: 95%;
+        height: 580px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 12px;
+        position: relative;
+    }
+
+    .contact-bg-section {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        z-index: 100;
+        border-radius: 12px;
+    }
+
+    .contacto__grid {
+        width: 90%;
+        padding: 3rem 0 0;
+        display: flex;
+        position: relative;
+        align-items: start;
+        justify-content: center;
+        gap: 4rem;
+        z-index: 100;
+    }
+
+    .contacto__info {
+        width: 35%;
+
+    }
+
+    /* ---------- Info ---------- */
+    .contacto__eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        margin-bottom: 1.2rem;
+        font-family: "IBM Plex Mono", ui-monospace, monospace;
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+    }
+
+    .contacto__eyebrow i {
+        width: 68px;
+        height: 2px;
+        background: #fff;
+    }
+
+    .contacto__eyebrow span {
+        color: #fff;
+        font-size: 15px;
+    }
+
+    .contacto__title {
+        margin: 0 0 1.4rem;
+        font-size: clamp(2.4rem, 57px, 55px);
+        text-transform: uppercase;
+        color: #d9d4f2;
+
+        font-weight: 700;
+        letter-spacing: -2.5px;
+        line-height: 1;
+    }
+
+    .contacto__desc {
+        max-width: 46ch;
+        margin: 0 0 2rem;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #cfcbe4;
+    }
+
+    .contacto__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 1.3rem;
+    }
+
+    .contacto__item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.1rem;
+    }
+
+    .contacto__icon {
+        flex: 0 0 52px;
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        color: #b36bff;
+        background: rgba(120, 60, 220, 0.28);
+        border: 1px solid rgba(170, 110, 255, 0.35);
+        border-radius: 8px;
+    }
+
+    .contacto__icon :global(svg) {
+        width: 24px;
+        height: 24px;
+    }
+
+    .contacto__item h3 {
+        margin: 0;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #fff;
+    }
+
+    .contacto__rule {
+        display: block;
+        width: 30px;
+        height: 2px;
+        margin: 0.45rem 0 0.5rem;
+        background: var(--morado);
+    }
+
+    .contacto__item a,
+    .contacto__item p {
+        margin: 0;
+        font-size: 0.92rem;
+        color: var(--suave);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .contacto__item a:hover {
+        color: #fff;
+    }
+
+    /* ---------- Formulario ---------- */
+    .contacto__form {
+        position: relative;
+        width: 45%;
+        display: grid;
+        gap: 1.1rem;
+        padding: 1.8rem;
+        background: rgba(12, 9, 28, 0.55);
+        border: 1px solid rgba(170, 110, 255, 0.28);
+        border-radius: 6px;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow: 0 30px 60px -30px rgba(120, 40, 255, 0.5);
+    }
+
+    /* Borde animado: luces de colores que recorren todo el contorno */
+    @property --angulo {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+    }
+
+    @keyframes giro-borde {
+        to {
+            --angulo: 360deg;
+        }
+    }
+
+    .contacto__form::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        padding: 2px;
+        border-radius: 7px;
+        background: conic-gradient(
+            from var(--angulo),
+            transparent 0deg,
+            #a21df0 45deg,
+            #e4437a 90deg,
+            #ff7a1a 135deg,
+            transparent 180deg,
+            transparent 200deg,
+            #2f7bff 250deg,
+            #00e0ff 290deg,
+            #9b30ff 320deg,
+            transparent 360deg
+        );
+        -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+        animation: giro-borde 5s linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .contacto__form::before {
+            animation: none;
+        }
+    }
+
+    .contacto__form-title {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .contacto__row {
+        width: 100%;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .contacto__field {
+        width: 48%;
+        display: grid;
+        gap: 0.4rem;
+        min-width: 0;
+    }
+
+    .contacto__field.text-area {
+        width: 100%;
+    }
+
+    .contacto__field span {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--suave);
+    }
+
+    .contacto__field input,
+    .contacto__field textarea {
+        width: 90%;
+        padding: 0.8rem 0.95rem;
+        font: inherit;
+        font-size: 0.92rem;
+        color: #fff;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 8px;
+        outline: none;
+        resize: vertical;
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            background 0.2s ease;
+    }
+
+    .contacto__field.text-area textarea {
+        width: 95%;
+    }
+
+    .contacto__field input::placeholder,
+    .contacto__field textarea::placeholder {
+        color: #6f6b8c;
+    }
+
+    .contacto__field input:focus,
+    .contacto__field textarea:focus {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--morado);
+        box-shadow: 0 0 0 3px rgba(155, 48, 255, 0.25);
+    }
+
+    .contacto__btn {
+        justify-self: start;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.9rem 1.7rem 0.9rem 1.5rem;
+        font: inherit;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #fff;
+        background: linear-gradient(
+            90deg,
+            #a21df0 0%,
+            #e4437a 60%,
+            var(--naranja) 100%
+        );
+        border: 0;
+        border-radius: 6px 0 0 6px;
+        cursor: pointer;
+        clip-path: polygon(
+            0 0,
+            100% 0,
+            100% calc(100% - 14px),
+            calc(100% - 14px) 100%,
+            0 100%
+        );
+        transition:
+            transform 0.2s ease,
+            filter 0.2s ease;
+    }
+
+    .contacto__btn:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.1);
+    }
+
+    .contacto__btn:disabled {
+        opacity: 0.6;
+        cursor: wait;
+    }
+
+    .contacto__btn :global(svg) {
+        width: 17px;
+        height: 17px;
+    }
+
+    .contacto__status {
+        min-height: 1.2em;
+        margin: 0;
+        font-size: 0.85rem;
+    }
+
+    .contacto__status[data-estado="ok"] {
+        color: #6ee7a8;
+    }
+
+    .contacto__status[data-estado="error"] {
+        color: #ff8a8a;
+    }
+
+    /* ---------- Pie ---------- */
+    .contacto__foot {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        position: relative;
+        z-index: 100;
+    }
+
+    .contacto__badge {
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: radial-gradient(circle, #2a1a5e, #0d0a22);
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        border-radius: 50%;
+    }
+
+    .contacto__badge :global(svg) {
+        width: 26px;
+        height: 26px;
+    }
+
+    .contacto__vline {
+        width: 2px;
+        height: 56px;
+        background: linear-gradient(180deg, var(--morado), var(--naranja));
+    }
+
+    .contacto__foot ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        line-height: 1.7;
+        text-transform: uppercase;
+        color: #b9a8ff;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 960px) {
+        .section-contact {
+            height: auto;
+            padding: 2rem 0;
+        }
+
+        .content-contact {
+            height: auto;
+            padding: 2.5rem 0 2rem;
+        }
+
+        .contacto__grid {
+            width: 90%;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 2.5rem;
+            padding: 0;
+        }
+
+        .contacto__info,
+        .contacto__form {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .contacto__foot {
+            width: 90%;
+            margin-top: 2.5rem;
+        }
+    }
+
+    @media (max-width: 560px) {
+        .contacto__grid {
+            width: 88%;
+        }
+
+        .contacto__row {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1.1rem;
+        }
+
+        .contacto__field,
+        .contacto__field.text-area {
+            width: 100%;
+        }
+
+        .contacto__field input,
+        .contacto__field textarea,
+        .contacto__field.text-area textarea {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .contacto__form {
+            padding: 1.25rem;
+        }
+
+        .contacto__foot {
+            width: 88%;
+            flex-wrap: wrap;
+        }
+    }
+</style>

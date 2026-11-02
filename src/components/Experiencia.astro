@@ -10,12 +10,6 @@ import ExperienciaCard from "../components/ExperienciaCard.astro";
             <div class="section-title-fondo-blur">
                 <h2 class="subtitle">Experiencia Profecional</h2>
             </div>
-
-            <Image
-                src={imageReveal}
-                alt="Descripción de la imagen"
-                class="ima-reveal"
-            />
         </div>
         <div class="section-cards">
             <ExperienciaCard
@@ -152,25 +146,6 @@ import ExperienciaCard from "../components/ExperienciaCard.astro";
         top: 0;
         display: flex;
     }
-
-    .ima-reveal {
-        width: 700px;
-        height: 720px;
-        position: absolute;
-        left: -50px;
-        overflow: hidden;
-        bottom: -200px;
-        transform: translateX(-200px);
-        /* opacity: 0; */
-        transition:
-            transform 0.6s ease-out,
-            opacity 0.6s ease-out;
-    }
-    /* 
-    .ima-reveal.reveal {
-        opacity: 1;
-        transform: translateX(0);
-    } */
 
     .subtitle {
         font-size: 57px;
